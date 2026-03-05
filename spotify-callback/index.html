@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Conectando...</title></head>
+<body>
+<p style="font-family:sans-serif;text-align:center;margin-top:40px">Conectando con Spotify... puedes cerrar esta ventana.</p>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code  = params.get('code');
+  const error = params.get('error');
+
+  if (window.opener) {
+    window.opener.postMessage(
+      code  ? { type: 'spotify-callback', code: code }
+            : { type: 'spotify-callback', error: error || 'unknown' },
+      '*'
+    );
+    setTimeout(() => window.close(), 500);
+  } else {
+    document.querySelector('p').textContent = 'Error: no se pudo comunicar con la app. Cierra esta ventana y reintenta.';
+  }
+</script>
+</body>
+</html>
