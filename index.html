@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0060)file:///Users/manubarreranieto/Downloads/audio-analyzer.html -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="es">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Audio DNA — Analizador Musical</title>
-<script src="./index_files/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.11.0/dist/tf.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
   :root {
@@ -158,7 +158,7 @@
     </div>
     <div style="text-align:right">
       <div class="subtitle">powered by</div>
-      <div style="color:var(--accent2);font-family:&#39;Syne&#39;,sans-serif;font-size:1rem;font-weight:700;margin-top:4px">3 capas de análisis</div>
+      <div style="color:var(--accent2);font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-top:4px">3 capas de análisis</div>
     </div>
   </header>
 
@@ -166,7 +166,7 @@
   <div class="panel">
     <div class="section-label">🎧 Conectar con Spotify</div>
     <button id="spotifyLoginBtn" onclick="spotifyLogin()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="black"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"></path></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="black"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       Iniciar sesión con Spotify
     </button>
     <div id="spotifyLoadSection" style="display:none">
@@ -182,11 +182,11 @@
   <!-- MODELS -->
   <div class="models-panel">
     <div style="font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent3);margin-bottom:8px">⚡ Modelos Essentia MTG (TensorFlow.js)</div>
-    <div class="model-row"><div class="model-dot ready" id="dot-happy"></div><span>mood_happy / mood_sad — valencia emocional</span></div>
-    <div class="model-row"><div class="model-dot ready" id="dot-relaxed"></div><span>mood_relaxed — relajación / activación</span></div>
-    <div class="model-row"><div class="model-dot ready" id="dot-aggressive"></div><span>mood_aggressive — agresividad / tensión</span></div>
-    <div class="model-row"><div class="model-dot ready" id="dot-danceable"></div><span>danceability — bailabilidad</span></div>
-    <div id="modelsStatus" style="font-size: 0.72rem; color: var(--accent2); margin-top: 12px;">✓ 4 modelos Essentia MTG listos</div>
+    <div class="model-row"><div class="model-dot" id="dot-happy"></div><span>mood_happy / mood_sad — valencia emocional</span></div>
+    <div class="model-row"><div class="model-dot" id="dot-relaxed"></div><span>mood_relaxed — relajación / activación</span></div>
+    <div class="model-row"><div class="model-dot" id="dot-aggressive"></div><span>mood_aggressive — agresividad / tensión</span></div>
+    <div class="model-row"><div class="model-dot" id="dot-danceable"></div><span>danceability — bailabilidad</span></div>
+    <div id="modelsStatus" style="font-size:0.72rem;color:var(--muted);margin-top:12px">Cargando modelos... (primera vez ~20s)</div>
   </div>
 
   <!-- DROP ZONE -->
@@ -195,10 +195,10 @@
     <h2>Arrastra tus archivos de audio aquí</h2>
     <p>MP3 · WAV · OGG · FLAC · M4A — múltiples archivos</p>
   </div>
-  <input type="file" id="fileInput" accept="audio/*" multiple="">
+  <input type="file" id="fileInput" accept="audio/*" multiple>
   <div class="file-queue" id="fileQueue"></div>
 
-  <button class="analyze-btn" id="analyzeBtn" disabled=""><span>⬡ Analizar todos los archivos</span></button>
+  <button class="analyze-btn" id="analyzeBtn" disabled><span>⬡ Analizar todos los archivos</span></button>
 
   <div class="results-section" id="resultsSection">
     <div id="summarySection"></div>
@@ -861,10 +861,46 @@ window.addEventListener('load',()=>{
     loadSpotifyPlaylist();
   }
   loadModels();
+
+  // ── Drop zone & file input ──────────────────────────────────────
+  const dropZone = document.getElementById('dropZone');
+
+  dropZone.addEventListener('click', () => fileInput.click());
+
+  dropZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    addFiles([...e.dataTransfer.files]);
+  });
+
+  fileInput.addEventListener('change', () => {
+    addFiles([...fileInput.files]);
+    fileInput.value = '';
+  });
+
+  analyzeBtn.addEventListener('click', analyzeAll);
 });
+
+function addFiles(newFiles) {
+  const allowed = ['audio/mpeg','audio/wav','audio/ogg','audio/flac','audio/mp4','audio/x-m4a','audio/aac','audio/webm'];
+  newFiles.forEach(f => {
+    if (!allowed.includes(f.type) && !f.name.match(/\.(mp3|wav|ogg|flac|m4a|aac|webm)$/i)) return;
+    if (files.find(p => p.name === f.name && p.size === f.size)) return;
+    files.push(f);
+    const item = document.createElement('div');
+    item.className = 'file-item';
+    item.innerHTML = `<span>🎵 ${f.name}</span><span style="color:var(--muted);font-size:0.75rem">${(f.size/1024/1024).toFixed(2)} MB</span>`;
+    fileQueue.appendChild(item);
+  });
+  analyzeBtn.disabled = files.length === 0;
+}
 </script>
 
 
-
-
-</body></html>
+</body>
+</html>
