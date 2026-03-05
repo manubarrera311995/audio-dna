@@ -323,6 +323,32 @@ async function loadModels() {
   else if (loaded > 0) { statusEl.style.color='var(--accent3)'; statusEl.textContent=`⚠ ${loaded}/${total} modelos cargados`; }
   else { statusEl.style.color='var(--accent1)'; statusEl.textContent='⚠ Modelos no disponibles — modo heurístico'; }
 }
+
+function setStatus(idx, state, msg) {
+  const items = fileQueue.querySelectorAll('.file-item');
+  if (items[idx]) {
+    items[idx].dataset.state = state;
+    const existing = items[idx].querySelector('.file-status');
+    if (existing) existing.textContent = msg;
+    else {
+      const span = document.createElement('span');
+      span.className = 'file-status';
+      span.style.cssText = 'font-size:0.75rem;color:var(--muted)';
+      span.textContent = msg;
+      items[idx].appendChild(span);
+    }
+  }
+}
+
+function setStep(name, state) {
+  const steps = {'spotify':0,'audio':1,'essentia':2,'ai':3};
+  const dots = document.querySelectorAll('.progress-step');
+  const idx = steps[name];
+  if (dots && dots[idx]) {
+    dots[idx].dataset.state = state;
+  }
+}
+
 async function analyzeAll() {
   analyzeBtn.disabled=true; allResults=[]; trackResults.innerHTML=''; summarySection.innerHTML='';
   progressOverlay.classList.add('visible');
