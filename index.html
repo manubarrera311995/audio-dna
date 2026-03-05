@@ -704,19 +704,11 @@ async function spotifyLogin() {
   localStorage.removeItem('spotify_cb');
   window.open(`https://accounts.spotify.com/authorize?${p}`,'sa','width=500,height=700');
   setSpotifyStatus('Esperando autorización...','var(--muted)');
-  // Polling de localStorage (funciona aunque window.opener sea null)
-  let attempts = 0;
-  const poll = setInterval(async () => {
-    attempts++;
-    const raw = localStorage.getItem('spotify_cb');
-    if (!raw && attempts < 120) return; // esperar hasta 2 min
-    clearInterval(poll);
-    if (!raw) {
-      setSpotifyStatus('⚠ Tiempo de espera agotado.','var(--accent1)');
-      btn.textContent='Iniciar sesión con Spotify'; btn.disabled=false;
-      return;
-    }
+  // Escuchar evento storage (se dispara cuando el callback escribe en localStorage)
+  async function handleSpotifyCallback(raw) {
     localStorage.removeItem('spotify_cb');
+    window.removeEventListener('storage', onStorage);
+    clearInterval(poll);
     const cb = JSON.parse(raw);
     if (cb.error) {
       setSpotifyStatus('⚠ '+cb.error,'var(--accent1)');
@@ -735,6 +727,26 @@ async function spotifyLogin() {
       loadSpotifyPlaylist();
     } catch(err) {
       setSpotifyStatus('⚠ '+err.message,'var(--accent1)');
+      btn.textContent='Iniciar sesión con Spotify'; btn.disabled=false;
+    }
+  }
+
+  // storage event: se dispara automáticamente cuando otra pestaña/popup escribe
+  const onStorage = (e) => {
+    if (e.key === 'spotify_cb' && e.newValue) handleSpotifyCallback(e.newValue);
+  };
+  window.addEventListener('storage', onStorage);
+
+  // Polling como fallback (por si el storage event no llega)
+  let attempts = 0;
+  const poll = setInterval(() => {
+    attempts++;
+    const raw = localStorage.getItem('spotify_cb');
+    if (raw) { handleSpotifyCallback(raw); return; }
+    if (attempts >= 120) {
+      clearInterval(poll);
+      window.removeEventListener('storage', onStorage);
+      setSpotifyStatus('⚠ Tiempo de espera agotado.','var(--accent1)');
       btn.textContent='Iniciar sesión con Spotify'; btn.disabled=false;
     }
   }, 1000);
@@ -1044,14 +1056,14 @@ function aggregate(frames, sr) {
 }
 
 function computeAcousticFeatures(mono, sr) {
-  const fSize=2048, hop=1024, maxF=9999;
+  const fSize=2048, hop=1024, maxF=150;
   const frames=[];
   for(let s=0,fi=0; s+fSize<=mono.length&&fi<maxF; s+=hop,fi++) frames.push(mono.slice(s,s+fSize));
   return aggregate(frames.map(f=>frameFeats(f,sr)), sr);
 }
 
 function computePseudoEmbeddings(mono, sr) {
-  const fSize=512, hop=256, maxFrames=9999;
+  const fSize=512, hop=256, maxFrames=150;
   const frames=[];
   for(let s=0,fi=0; s+fSize<=mono.length&&fi<maxFrames; s+=hop,fi++) frames.push(mono.slice(s,s+fSize));
   if (!frames.length) return new Float32Array(200);
@@ -1111,11 +1123,28 @@ function computeHeuristicMood(mono, sr) {
 self.onmessage = function(e) {
   const { mono, sr, duration } = e.data;
   try {
-    const acoustic = computeAcousticFeatures(mono, sr);
+    // Tomar 3 muestras de 8s: inicio, medio y final — análisis 3x más rápido
+    const sampleLen = sr * 8;
+    const segments = [];
+    if (mono.length <= sampleLen * 3) {
+      segments.push(mono);
+    } else {
+      const mid = Math.floor(mono.length / 2);
+      segments.push(mono.slice(0, sampleLen));
+      segments.push(mono.slice(mid - sampleLen/2, mid + sampleLen/2));
+      segments.push(mono.slice(mono.length - sampleLen));
+    }
+    // Concatenar segmentos
+    const total = segments.reduce((s,a) => s + a.length, 0);
+    const sample = new Float32Array(total);
+    let offset = 0;
+    segments.forEach(s => { sample.set(s, offset); offset += s.length; });
+
+    const acoustic = computeAcousticFeatures(sample, sr);
     acoustic.duration = duration;
     acoustic.sampleRate = sr;
-    const embeddings = computePseudoEmbeddings(mono, sr);
-    const heuristicMood = computeHeuristicMood(mono, sr);
+    const embeddings = computePseudoEmbeddings(sample, sr);
+    const heuristicMood = computeHeuristicMood(sample, sr);
     self.postMessage({ ok: true, acoustic, embeddings: Array.from(embeddings), heuristicMood });
   } catch(err) {
     self.postMessage({ ok: false, error: err.message });
