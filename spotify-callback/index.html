@@ -2,22 +2,23 @@
 <html>
 <head><meta charset="utf-8"><title>Conectando...</title></head>
 <body>
-<p style="font-family:sans-serif;text-align:center;margin-top:40px">Conectando con Spotify... puedes cerrar esta ventana.</p>
+<p style="font-family:sans-serif;text-align:center;margin-top:40px">Conectando con Spotify...</p>
 <script>
   const params = new URLSearchParams(window.location.search);
   const code  = params.get('code');
   const error = params.get('error');
 
-  if (window.opener) {
-    window.opener.postMessage(
-      code  ? { type: 'spotify-callback', code: code }
-            : { type: 'spotify-callback', error: error || 'unknown' },
-      '*'
-    );
-    setTimeout(() => window.close(), 500);
+  // Guardar en localStorage (mismo dominio = misma app lo puede leer)
+  if (code) {
+    localStorage.setItem('spotify_cb', JSON.stringify({ code, ts: Date.now() }));
+    document.querySelector('p').textContent = '✓ Conectado. Puedes cerrar esta ventana.';
   } else {
-    document.querySelector('p').textContent = 'Error: no se pudo comunicar con la app. Cierra esta ventana y reintenta.';
+    localStorage.setItem('spotify_cb', JSON.stringify({ error: error || 'unknown', ts: Date.now() }));
+    document.querySelector('p').textContent = 'Error al conectar. Puedes cerrar esta ventana.';
   }
+
+  // Intentar cerrar
+  setTimeout(() => window.close(), 800);
 </script>
 </body>
 </html>
