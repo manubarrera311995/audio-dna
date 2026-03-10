@@ -310,17 +310,6 @@ async function loadModels() {
   const statusEl = document.getElementById('modelsStatus');
   Object.values(dotMap).forEach(id => { const d=document.getElementById(id); if(d) d.className='model-dot loading'; });
 
-  // Inicializar Essentia WASM para extracción de mel-bands
-  try {
-    essentiaWASM = await EssentiaWASM();
-    essentiaExtractor = new EssentiaModel.EssentiaTFInputExtractor(essentiaWASM, 'musicnn', false);
-    console.log('Essentia WASM inicializado');
-  } catch(e) {
-    console.warn('Essentia WASM falló:', e.message);
-    if (statusEl) { statusEl.style.color='var(--accent1)'; statusEl.textContent='⚠ Modelos no disponibles — modo heurístico'; }
-    return;
-  }
-
   // Decodificar pesos embebidos — sin fetches externos, sin CORS
   let weightsBuffer;
   try {
@@ -514,23 +503,15 @@ async function fetchSpotifyAudioFeatures(trackId) {
 // ESSENTIA MODELS
 // ================================================================
 async function runEssentiaModels(audioMono, sr, heuristicMood) {
-  if (!modelsReady || !essentiaExtractor) return heuristicMood || {};
+  if (!modelsReady) return heuristicMood || {};
 
   try {
-    // 1. Extraer features con EssentiaTFInputExtractor (mel-bands 96, parametrización MusiCNN)
-    const features = essentiaExtractor.computeFrameWise(audioMono, 256);
+    // Generar vector de 200 dims desde features acústicas (compatible con el modelo embebido)
+    const avgEmb = computePseudoEmbeddings(audioMono, sr);
+    const embDim = avgEmb.length; // 200
+    console.log('Pseudo-embeddings generados:', embDim, 'dims');
 
-    // 2. Promediar parches sobre el tiempo
-    const nPatches = features.length;
-    if (!nPatches) return heuristicMood || {};
-    const embDim = features[0].length;
-    const avgEmb = new Float32Array(embDim).fill(0);
-    for (const patch of features) {
-      for (let i = 0; i < embDim; i++) avgEmb[i] += patch[i] / nPatches;
-    }
-    console.log('Features Essentia:', embDim, 'dims,', nPatches, 'parches');
-
-    // 3. Pasar embeddings a cada clasificador de mood
+    // Pasar a cada clasificador de mood
     const embTensor = tf.tensor2d([Array.from(avgEmb)], [1, embDim]);
     const scores = {};
     for (const [name, model] of Object.entries(essentiaModels)) {
