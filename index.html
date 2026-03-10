@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0062)file:///Users/manubarreranieto/Downloads/audio-analyzer_4.html -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="es">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Audio DNA — Analizador Musical</title>
-<script src="./Audio DNA — Analizador Musical_files/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
   :root {
@@ -158,7 +158,7 @@
     </div>
     <div style="text-align:right">
       <div class="subtitle" style="letter-spacing:2px;font-size:0.68rem;color:var(--muted)">POWERED BY</div>
-      <div style="color:var(--fg);font-family:&#39;Syne&#39;,sans-serif;font-size:0.82rem;font-weight:700;margin-top:4px;letter-spacing:1px">ESSENTIA MTG &nbsp;·&nbsp; SPOTIFY API &nbsp;·&nbsp; CLAUDE AI</div>
+      <div style="color:var(--fg);font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;margin-top:4px;letter-spacing:1px">ESSENTIA MTG &nbsp;·&nbsp; SPOTIFY API &nbsp;·&nbsp; CLAUDE AI</div>
     </div>
   </header>
 
@@ -166,7 +166,7 @@
   <div class="panel">
     <div class="section-label">🎧 Conecta tu playlist</div>
     <button id="spotifyLoginBtn" onclick="spotifyLogin()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="black"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"></path></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="black"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
       Iniciar sesión con Spotify
     </button>
     <div id="spotifyLoadSection" style="display:none">
@@ -182,11 +182,11 @@
   <!-- MODELS -->
   <div class="models-panel">
     <div style="font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent3);margin-bottom:8px">⚡ Modelos Essentia MTG (TensorFlow.js)</div>
-    <div class="model-row"><div class="model-dot ready" id="dot-happy"></div><span>mood_happy / mood_sad — valencia emocional</span></div>
-    <div class="model-row"><div class="model-dot ready" id="dot-relaxed"></div><span>mood_relaxed — relajación / activación</span></div>
-    <div class="model-row"><div class="model-dot ready" id="dot-aggressive"></div><span>mood_aggressive — agresividad / tensión</span></div>
-    <div class="model-row"><div class="model-dot ready" id="dot-danceable"></div><span>danceability — bailabilidad</span></div>
-    <div id="modelsStatus" style="font-size: 0.72rem; color: var(--accent2); margin-top: 12px;">✓ 4 modelos Essentia MTG listos</div>
+    <div class="model-row"><div class="model-dot" id="dot-happy"></div><span>mood_happy / mood_sad — valencia emocional</span></div>
+    <div class="model-row"><div class="model-dot" id="dot-relaxed"></div><span>mood_relaxed — relajación / activación</span></div>
+    <div class="model-row"><div class="model-dot" id="dot-aggressive"></div><span>mood_aggressive — agresividad / tensión</span></div>
+    <div class="model-row"><div class="model-dot" id="dot-danceable"></div><span>danceability — bailabilidad</span></div>
+    <div id="modelsStatus" style="font-size:0.72rem;color:var(--muted);margin-top:12px">Cargando modelos... (primera vez ~20s)</div>
   </div>
 
   <!-- DROP ZONE -->
@@ -195,10 +195,10 @@
     <h2>Arrastra tus archivos de audio aquí</h2>
     <p>MP3 · WAV · OGG · FLAC · M4A — múltiples archivos</p>
   </div>
-  <input type="file" id="fileInput" accept="audio/*" multiple="">
+  <input type="file" id="fileInput" accept="audio/*" multiple>
   <div class="file-queue" id="fileQueue"></div>
 
-  <button class="analyze-btn" id="analyzeBtn" disabled=""><span>⬡ Descubre cómo sientes la música</span></button>
+  <button class="analyze-btn" id="analyzeBtn" disabled><span>⬡ Descubre cómo sientes la música</span></button>
 
   <div class="results-section" id="resultsSection">
     <div id="summarySection"></div>
@@ -236,7 +236,7 @@
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px">
         <div style="font-size:0.65rem;letter-spacing:2px;color:#1DB954;font-weight:700;margin-bottom:12px">DATOS SPOTIFY</div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">😊 Valencia</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El humor de la canción según Spotify. 0% = oscura y triste (balada de desamor). 100% = eufórica y feliz (hit de verano).</div></div>
+          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">😊 Estado de ánimo</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El humor de la canción según Spotify. 0% = oscura y triste (balada de desamor). 100% = eufórica y feliz (hit de verano).</div></div>
           <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🔥 Energía</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">La intensidad que sientes. No es solo volumen: incluye velocidad y densidad. Metal = 98%. Canción de cuna = 5%.</div></div>
           <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🎸 Acousticness</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Instrumento real o pantalla? Alto = guitarra, piano, voz sin procesar. Bajo = síntesis, samples, producción electrónica.</div></div>
           <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🥁 Tempo (BPM)</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El ritmo cardíaco de la canción. 60–80 = ballad, lo-fi. 120–130 = house, pop. 140–180 = techno, drum &amp; bass.</div></div>
@@ -498,8 +498,7 @@ async function runEssentiaModels(embeddings, sr) {
     } catch(e) { console.warn('predict', name, e.message); }
   }
   tensor.dispose();
-  const h = computeHeuristicMood(mono, sr);
-  for (const k of Object.keys(scores)) if (scores[k] === null) scores[k] = h[k];
+  for (const k of Object.keys(scores)) if (scores[k] === null) scores[k] = 0.5;
   if (scores.sad === null) scores.sad = 1 - (scores.happy || 0.5);
   return scores;
 }
@@ -637,11 +636,14 @@ function buildDescriptors(f, mood, spotify) {
   const energy = spotify?.energy!=null  ? Math.round(spotify.energy*100)  : Math.round(Math.min(100,Math.max(0,(f.rms_mean||0)/0.3*100)));
   const relaxed = pct(mood.relaxed);
   const aggressive = pct(mood.aggressive);
+  const valence     = spotify?.valence!=null      ? Math.round(spotify.valence*100)      : happy;
+  const acousticness_val = spotify?.acousticness!=null ? Math.round(spotify.acousticness*100) : Math.round(Math.max(0, 100 - (f.highFreqRatio||0)*100 - (f.zcr_mean||0)*3000));
   return {
     danceability, happy, sad:Math.round(100-happy), relaxed, aggressive,
     engagement:50, approachability:50,
+    valence: valence,
     energy,
-    acousticness:     spotify?.acousticness!=null     ? Math.round(spotify.acousticness*100)     : null,
+    acousticness: acousticness_val,
     instrumentalness: spotify?.instrumentalness!=null ? Math.round(spotify.instrumentalness*100) : null,
     liveness:         spotify?.liveness!=null         ? Math.round(spotify.liveness*100)         : null,
     speechiness:      spotify?.speechiness!=null      ? Math.round(spotify.speechiness*100)      : null,
@@ -844,9 +846,11 @@ function renderTrackCard(result, idx) {
     {key:'aggressive',    label:'Intensidad',      src:d.moodSource},
     {key:'engagement',    label:'Enganche',      src:'🤖 Claude AI'},
     {key:'approachability',label:'Accesibilidad',src:'🤖 Claude AI'},
+    {key:'valence',       label:'😊 Estado de ánimo',    src:'★ Spotify'},
+    {key:'acousticness',  label:'🎸 Acousticness',src:'★ Spotify'},
   ];
   const extras = d.spotifyTrackName ? [
-    {key:'energy',label:'Energy'},{key:'acousticness',label:'Acousticness'},
+    {key:'energy',label:'Energy'},
     {key:'instrumentalness',label:'Instrumentalness'},{key:'liveness',label:'Liveness'},{key:'speechiness',label:'Speechiness'},
   ].filter(m=>d[m.key]!=null) : [];
 
@@ -1179,6 +1183,5 @@ self.onmessage = function(e) {
   <footer style="text-align:center;padding:32px 20px 24px;color:var(--muted);font-size:0.72rem;letter-spacing:1.5px;border-top:1px solid var(--border);margin-top:48px">
     MANUELA BARRERA NIETO &nbsp;·&nbsp; UNIVERSIDAD DE LOS ANDES &nbsp;·&nbsp; 2026
   </footer>
-
-
-</body></html>
+</body>
+</html>
