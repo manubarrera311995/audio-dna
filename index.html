@@ -491,14 +491,51 @@ async function runEssentiaModels(embeddings, sr, heuristicMood) {
     try {
       const out = model.predict(tensor);
       const data = await out.data(); out.dispose();
-      // Output: [prob_false, prob_true]
       scores[name] = data.length >= 2 ? data[1] : data[0];
     } catch(e) { console.warn('predict', name, e.message); }
   }
   tensor.dispose();
+
+  // Rellenar nulls con heurístico
   const h = heuristicMood || {};
   for (const k of Object.keys(scores)) if (scores[k] === null) scores[k] = h[k] || 0.5;
   if (scores.sad === null) scores.sad = 1 - (scores.happy || 0.5);
+
+  // Normalización min-max: estira los scores al rango completo 0-1
+  // Los modelos MTG tienden a dar valores en rangos estrechos (ej. 0.4-0.6)
+  const vals = Object.values(scores).filter(v => v !== null);
+  const minV = Math.min(...vals);
+  const maxV = Math.max(...vals);
+  const range = maxV - minV;
+
+  if (range > 0.05) {
+    // Hay variación suficiente — estirar al rango 0-1
+    for (const k of Object.keys(scores)) {
+      if (scores[k] !== null) {
+        scores[k] = (scores[k] - minV) / range;
+      }
+    }
+  } else {
+    // Rango muy estrecho — combinar con heurístico para diferenciar
+    for (const k of Object.keys(scores)) {
+      if (scores[k] !== null && h[k] != null) {
+        scores[k] = scores[k] * 0.3 + h[k] * 0.7;
+      }
+    }
+  }
+
+  // Aplicar curva de contraste para separar aún más los valores
+  const contrast = v => {
+    if (v >= 0.5) return 0.5 + 0.5 * Math.pow((v - 0.5) * 2, 0.7);
+    else return 0.5 - 0.5 * Math.pow((0.5 - v) * 2, 0.7);
+  };
+  for (const k of Object.keys(scores)) {
+    if (scores[k] !== null) scores[k] = contrast(scores[k]);
+  }
+
+  // sad siempre es el inverso de happy
+  scores.sad = 1 - scores.happy;
+
   return scores;
 }
 
