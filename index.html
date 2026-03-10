@@ -458,7 +458,7 @@ async function analyzeFile(file) {
 
   // 3 Essentia
   setStep('essentia','active');
-  const mood = await runEssentiaModels(mono, sr, workerResult.heuristicMood);
+  const mood = await runEssentiaModels(workerResult.embeddings, workerResult.heuristicMood);
   setStep('essentia','done');
 
   // 4 Descriptors
@@ -502,17 +502,13 @@ async function fetchSpotifyAudioFeatures(trackId) {
 // ================================================================
 // ESSENTIA MODELS
 // ================================================================
-async function runEssentiaModels(audioMono, sr, heuristicMood) {
+async function runEssentiaModels(embeddings, heuristicMood) {
   if (!modelsReady) return heuristicMood || {};
 
   try {
-    // Generar vector de 200 dims desde features acústicas (compatible con el modelo embebido)
-    const avgEmb = computePseudoEmbeddings(audioMono, sr);
-    const embDim = avgEmb.length; // 200
-    console.log('Pseudo-embeddings generados:', embDim, 'dims');
-
-    // Pasar a cada clasificador de mood
-    const embTensor = tf.tensor2d([Array.from(avgEmb)], [1, embDim]);
+    // Usar embeddings ya calculados por el Worker (200 dims)
+    const avgEmb = new Float32Array(embeddings);
+    const embTensor = tf.tensor2d([Array.from(avgEmb)], [1, avgEmb.length]);
     const scores = {};
     for (const [name, model] of Object.entries(essentiaModels)) {
       if (!model) continue;
