@@ -307,20 +307,31 @@ async function loadModels() {
   const statusEl = document.getElementById('modelsStatus');
   Object.values(dotMap).forEach(id => { const d=document.getElementById(id); if(d) d.className='model-dot loading'; });
 
-  const BASE = 'https://manubarrera311995.github.io/audio-dna/models/';
-  const MODEL_URLS = {
-    happy:      BASE + 'mood_happy/model.json',
-    relaxed:    BASE + 'mood_relaxed/model.json',
-    aggressive: BASE + 'mood_aggressive/model.json',
-    danceable:  BASE + 'danceability/model.json',
-  };
+  // Todo embebido — sin fetches externos, sin CORS
+  let weightsBuffer;
+  try {
+    const binStr = atob(getWeightsB64());
+    weightsBuffer = new ArrayBuffer(binStr.length);
+    const view = new Uint8Array(weightsBuffer);
+    for (let i = 0; i < binStr.length; i++) view[i] = binStr.charCodeAt(i);
+  } catch(e) {
+    console.warn('Error decodificando pesos:', e.message);
+    if (statusEl) { statusEl.style.color='var(--accent1)'; statusEl.textContent='⚠ Error en pesos embebidos'; }
+    return;
+  }
 
   let loaded = 0;
   const total = 4;
 
-  for (const [name, url] of Object.entries(MODEL_URLS)) {
+  for (const name of ['happy', 'relaxed', 'aggressive', 'danceable']) {
     try {
-      essentiaModels[name] = await tf.loadGraphModel(url);
+      const d = ensureModelData();
+      const modelArtifacts = {
+        modelTopology: d.topology,
+        weightSpecs:   d.weight_specs,
+        weightData:    weightsBuffer,
+      };
+      essentiaModels[name] = await tf.loadGraphModel(tf.io.fromMemory(modelArtifacts));
       document.getElementById(dotMap[name]).className = 'model-dot ready';
       loaded++;
       statusEl.textContent = `Modelos cargados: ${loaded}/${total}`;
@@ -333,8 +344,8 @@ async function loadModels() {
   }
   modelsReady = loaded > 0;
   if (loaded === total) { statusEl.style.color='var(--accent2)'; statusEl.textContent=`✓ ${total} modelos Essentia MTG listos`; }
-  else if (loaded > 0) { statusEl.style.color='var(--accent3)'; statusEl.textContent=`⚠ ${loaded}/${total} modelos cargados`; }
-  else { statusEl.style.color='var(--accent1)'; statusEl.textContent='⚠ Modelos no disponibles — modo heurístico'; }
+  else if (loaded > 0)  { statusEl.style.color='var(--accent3)'; statusEl.textContent=`⚠ ${loaded}/${total} modelos cargados`; }
+  else                  { statusEl.style.color='var(--accent1)'; statusEl.textContent='⚠ Modelos no disponibles — modo heurístico'; }
 }
 
 function setStatus(idx, state, msg) {
