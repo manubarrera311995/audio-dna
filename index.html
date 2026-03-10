@@ -506,6 +506,7 @@ async function runEssentiaModels(embeddings, sr) {
       const data = await out.data(); out.dispose();
       // Output: [prob_false, prob_true]
       scores[name] = data.length >= 2 ? data[1] : data[0];
+      console.log(`Score ${name}:`, data[0].toFixed(3), data[1].toFixed(3));
     } catch(e) { console.warn('predict', name, e.message); }
   }
   tensor.dispose();
