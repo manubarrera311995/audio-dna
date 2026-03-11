@@ -490,15 +490,21 @@ async function runEssentiaModels(embeddings, sr) {
   if (!modelsReady) return {};
   const tensor = tf.tensor2d(embeddings, [1, 200]);
   const scores = { happy:null, sad:null, relaxed:null, aggressive:null, danceable:null };
+  // Keras models compiled with learning_phase need a second boolean input
+  const learningPhase = tf.scalar(false);
   for (const [name, model] of Object.entries(essentiaModels)) {
     if (!model) continue;
     try {
-      const out = model.predict(tensor);
+      // Try with learning phase first, fall back to single input
+      let out;
+      try { out = model.predict([tensor, learningPhase]); }
+      catch(e2) { out = model.predict(tensor); }
       const data = await out.data(); out.dispose();
       scores[name] = data.length >= 2 ? data[1] : data[0];
       console.log(`Score ${name}:`, scores[name].toFixed(3));
     } catch(e) { console.warn('predict', name, e.message); }
   }
+  learningPhase.dispose();
   tensor.dispose();
   for (const k of Object.keys(scores)) if (scores[k] === null) scores[k] = 0.5;
   if (scores.sad === null) scores.sad = 1 - (scores.happy || 0.5);
