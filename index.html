@@ -492,7 +492,7 @@ async function runEssentiaModels(embeddings, sr) {
       catch(e2) { out = model.predict(tensor); }
       const data = await out.data(); out.dispose();
       scores[name] = data.length >= 2 ? data[1] : data[0];
-      console.log(`Score ${name}:`, scores[name].toFixed(3));
+      console.log(`Score ${name}: data=[${Array.from(data).map(v=>v.toFixed(4)).join(', ')}] → using ${scores[name].toFixed(4)}`);
     } catch(e) { console.warn('predict', name, e.message); }
   }
   learningPhase.dispose();
@@ -633,7 +633,7 @@ function buildDescriptors(f, mood, spotify) {
   const energy = spotify?.energy!=null  ? Math.round(spotify.energy*100)  : Math.round(Math.min(100,Math.max(0,(f.rms_mean||0)/0.3*100)));
   const relaxed = pct(mood.relaxed);
   const aggressive = pct(mood.aggressive);
-  const valence     = spotify?.valence!=null      ? Math.round(spotify.valence*100)      : happy;
+  const valence     = spotify?.valence!=null      ? Math.round(spotify.valence*100)      : Math.round((pct(mood.happy)*0.5 + (100-pct(mood.aggressive))*0.3 + pct(mood.relaxed)*0.2));
   return {
     danceability, happy, sad:Math.round(100-happy), relaxed, aggressive,
     engagement:50, approachability:50,
