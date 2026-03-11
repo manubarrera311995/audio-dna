@@ -307,37 +307,28 @@ async function loadModels() {
   const statusEl = document.getElementById('modelsStatus');
   Object.values(dotMap).forEach(id => { const d=document.getElementById(id); if(d) d.className='model-dot loading'; });
 
-  // Pesos embebidos en base64 — sin fetch externo para el .bin
-  const binStr = atob(getWeightsB64());
-  const weightsBuffer = new ArrayBuffer(binStr.length);
-  const view = new Uint8Array(weightsBuffer);
-  for (let i = 0; i < binStr.length; i++) view[i] = binStr.charCodeAt(i);
-
   const BASE = 'https://manubarrera311995.github.io/audio-dna/models/';
   const MOOD_FOLDERS = { happy:'mood_happy-musicnn', relaxed:'mood_relaxed-musicnn', aggressive:'mood_aggressive-musicnn', danceable:'danceability-musicnn' };
 
   let loaded = 0; const total = 4;
   for (const [name, folder] of Object.entries(MOOD_FOLDERS)) {
     try {
-      // Fetch solo el JSON (texto, sin CORS issues)
-      const resp = await fetch(`${BASE}${folder}/model.json`);
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const modelJSON = await resp.json();
-      // Usar topología remota + pesos embebidos locales (misma arquitectura)
-      const modelData = JSON.parse(document.getElementById('model-data').textContent);
-      const weightSpecs = modelData.weight_specs;
-      essentiaModels[name] = await tf.loadGraphModel(
-        tf.io.fromMemory({ modelTopology: modelJSON.modelTopology, weightSpecs, weightData: weightsBuffer })
-      );
+      const url = `${BASE}${folder}/model.json`;
+      essentiaModels[name] = await tf.loadGraphModel(url);
       document.getElementById(dotMap[name]).className = 'model-dot ready';
-      loaded++; statusEl.textContent = `Modelos cargados: ${loaded}/${total}`;
+      loaded++;
+      statusEl.textContent = `Modelos cargados: ${loaded}/${total}`;
       console.log(`Modelo ${name} OK`);
-    } catch(e) { console.warn(`Model ${name} failed:`, e.message); document.getElementById(dotMap[name]).className='model-dot error'; essentiaModels[name]=null; }
+    } catch(e) {
+      console.warn(`Model ${name} failed:`, e.message);
+      document.getElementById(dotMap[name]).className = 'model-dot error';
+      essentiaModels[name] = null;
+    }
   }
   modelsReady = loaded > 0;
-  if (loaded===total) { statusEl.style.color='var(--accent2)'; statusEl.textContent=`✓ ${total} modelos Essentia MTG listos`; }
-  else if (loaded>0)  { statusEl.style.color='var(--accent3)'; statusEl.textContent=`⚠ ${loaded}/${total} modelos cargados`; }
-  else                { statusEl.style.color='var(--accent1)'; statusEl.textContent='⚠ Modelos no disponibles — modo heurístico'; }
+  if (loaded === total)  { statusEl.style.color='var(--accent2)'; statusEl.textContent=`✓ ${total} modelos Essentia MTG listos`; }
+  else if (loaded > 0)   { statusEl.style.color='var(--accent3)'; statusEl.textContent=`⚠ ${loaded}/${total} modelos cargados`; }
+  else                   { statusEl.style.color='var(--accent1)'; statusEl.textContent='⚠ Modelos no disponibles — modo heurístico'; }
 }
 function setStatus(idx, state, msg) {
   const items = fileQueue.querySelectorAll('.file-item');
