@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test Models</title></head>
+<body>
+<h2>Test de carga de modelos</h2>
+<pre id="log">Iniciando pruebas...</pre>
+<script>
+const log = document.getElementById('log');
+function L(msg) { log.textContent += '\n' + msg; console.log(msg); }
+
+async function test() {
+  const base = 'https://manubarrera311995.github.io/audio-dna/models/';
+  const files = [
+    'msd-musicnn-1/model.json',
+    'mood_happy-musicnn/model.json',
+    'mood_sad-musicnn/model.json',
+    'mood_relaxed-musicnn/model.json',
+    'mood_aggressive-musicnn/model.json',
+    'danceability-musicnn/model.json'
+  ];
+
+  for (const f of files) {
+    const url = base + f;
+    try {
+      const r = await fetch(url);
+      L(`✅ ${f} → ${r.status} (${r.headers.get('content-type')})`);
+    } catch(e) {
+      L(`❌ ${f} → ${e.message}`);
+    }
+  }
+
+  // Test same-origin (relative)
+  L('\n--- Probando rutas relativas ---');
+  for (const f of files) {
+    try {
+      const r = await fetch('./models/' + f);
+      L(`✅ ./models/${f} → ${r.status}`);
+    } catch(e) {
+      L(`❌ ./models/${f} → ${e.message}`);
+    }
+  }
+}
+
+test();
+</script>
+</body>
+</html>
