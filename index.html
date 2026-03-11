@@ -634,13 +634,11 @@ function buildDescriptors(f, mood, spotify) {
   const relaxed = pct(mood.relaxed);
   const aggressive = pct(mood.aggressive);
   const valence     = spotify?.valence!=null      ? Math.round(spotify.valence*100)      : happy;
-  const acousticness_val = spotify?.acousticness!=null ? Math.round(spotify.acousticness*100) : Math.round(Math.max(0, 100 - (f.highFreqRatio||0)*100 - (f.zcr_mean||0)*3000));
   return {
     danceability, happy, sad:Math.round(100-happy), relaxed, aggressive,
     engagement:50, approachability:50,
     valence: valence,
     energy,
-    acousticness: acousticness_val,
     instrumentalness: spotify?.instrumentalness!=null ? Math.round(spotify.instrumentalness*100) : null,
     liveness:         spotify?.liveness!=null         ? Math.round(spotify.liveness*100)         : null,
     speechiness:      spotify?.speechiness!=null      ? Math.round(spotify.speechiness*100)      : null,
@@ -823,7 +821,6 @@ function renderTrackCard(result, idx) {
     {key:'engagement',    label:'Enganche',      src:'🤖 Claude AI'},
     {key:'approachability',label:'Accesibilidad',src:'🤖 Claude AI'},
     {key:'valence',       label:'😊 Estado de ánimo',    src:'★ Spotify'},
-    {key:'acousticness',  label:'🎸 Acousticness',src:'★ Spotify'},
   ];
   const extras = d.spotifyTrackName ? [
     {key:'energy',label:'Energy'},
