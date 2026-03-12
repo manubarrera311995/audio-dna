@@ -211,8 +211,6 @@
     <p>Cada canción es analizada por <strong style="color:var(--accent1)">tres capas combinadas</strong>: modelos reales de ML (Essentia MTG), datos oficiales de Spotify y razonamiento de IA (Claude).</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px">
-
-      <!-- BLOQUE 1: Estado de ánimo -->
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px">
         <div style="font-size:0.65rem;letter-spacing:2px;color:var(--accent1);font-weight:700;margin-bottom:12px">ESTADO DE ÁNIMO · ESSENTIA MTG</div>
         <div style="display:flex;flex-direction:column;gap:12px">
@@ -236,7 +234,6 @@
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px">
         <div style="font-size:0.65rem;letter-spacing:2px;color:#1DB954;font-weight:700;margin-bottom:12px">DATOS SPOTIFY</div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">😊 Estado de ánimo</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El humor de la canción según Spotify. 0% = oscura y triste (balada de desamor). 100% = eufórica y feliz (hit de verano).</div></div>
           <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🔥 Energía</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">La intensidad que sientes. No es solo volumen: incluye velocidad y densidad. Metal = 98%. Canción de cuna = 5%.</div></div>
           <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🎸 Acousticness</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Instrumento real o pantalla? Alto = guitarra, piano, voz sin procesar. Bajo = síntesis, samples, producción electrónica.</div></div>
           <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🥁 Tempo (BPM)</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El ritmo cardíaco de la canción. 60–80 = ballad, lo-fi. 120–130 = house, pop. 140–180 = techno, drum &amp; bass.</div></div>
@@ -633,11 +630,9 @@ function buildDescriptors(f, mood, spotify) {
   const energy = spotify?.energy!=null  ? Math.round(spotify.energy*100)  : Math.round(Math.min(100,Math.max(0,(f.rms_mean||0)/0.3*100)));
   const relaxed = pct(mood.relaxed);
   const aggressive = pct(mood.aggressive);
-  const valence     = spotify?.valence!=null      ? Math.round(spotify.valence*100)      : Math.round((pct(mood.happy)*0.5 + (100-pct(mood.aggressive))*0.3 + pct(mood.relaxed)*0.2));
   return {
     danceability, happy, sad:Math.round(100-happy), relaxed, aggressive,
     engagement:50, approachability:50,
-    valence: valence,
     energy,
     instrumentalness: spotify?.instrumentalness!=null ? Math.round(spotify.instrumentalness*100) : null,
     liveness:         spotify?.liveness!=null         ? Math.round(spotify.liveness*100)         : null,
@@ -820,7 +815,6 @@ function renderTrackCard(result, idx) {
     {key:'aggressive',    label:'Intensidad',      src:d.moodSource},
     {key:'engagement',    label:'Enganche',      src:'🤖 Claude AI'},
     {key:'approachability',label:'Accesibilidad',src:'🤖 Claude AI'},
-    {key:'valence',       label:'😊 Estado de ánimo',    src:'★ Spotify'},
   ];
   const extras = d.spotifyTrackName ? [
     {key:'energy',label:'Energy'},
