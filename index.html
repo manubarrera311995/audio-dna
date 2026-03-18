@@ -146,7 +146,7 @@
     <div class="progress-step" id="step-spotify"><div class="step-dot"></div><span>Datos de Spotify (géneros + audio features)</span></div>
     <div class="progress-step" id="step-audio"><div class="step-dot"></div><span>Análisis acústico (FFT + espectro)</span></div>
     <div class="progress-step" id="step-essentia"><div class="step-dot"></div><span>Modelos Essentia MTG (mood ML)</span></div>
-    <div class="progress-step" id="step-ai"><div class="step-dot"></div><span>Claude AI (engagement + approachability)</span></div>
+    <div class="progress-step" id="step-ai"><div class="step-dot"></div><span>DSP (engagement + accesibilidad)</span></div>
   </div>
 </div>
 
@@ -208,7 +208,7 @@
 
   <div class="info-panel">
     <h3>¿Qué significa cada métrica?</h3>
-    <p>Cada canción es analizada por <strong style="color:var(--accent1)">tres capas combinadas</strong>: modelos reales de ML (Essentia MTG), datos oficiales de Spotify y razonamiento de IA (Claude).</p>
+    <p>Cada canción es analizada por <strong style="color:var(--accent1)">tres capas combinadas</strong>: modelos reales de ML (Essentia MTG), datos oficiales de Spotify y análisis DSP.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px">
@@ -221,12 +221,12 @@
         </div>
       </div>
 
-      <!-- BLOQUE 2: Atractivo · IA -->
+      <!-- BLOQUE 2: Atractivo · DSP -->
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px">
-        <div style="font-size:0.65rem;letter-spacing:2px;color:var(--accent2);font-weight:700;margin-bottom:12px">ATRACTIVO · IA (CLAUDE)</div>
+        <div style="font-size:0.65rem;letter-spacing:2px;color:var(--accent2);font-weight:700;margin-bottom:12px">ATRACTIVO · DSP (Procesamiento Digital de Señal)</div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🪝 Enganche</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Te atrapa y no te suelta? Mide las capas que se van revelando, los momentos de tensión y release, y los giros inesperados que te hacen ponerla en repeat.</div></div>
-          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🚪 Accesibilidad</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿La amarías desde la primera escucha? Alta = melódica, fácil de canturrear (pop, reggaeton). Baja = requiere varias pasadas (jazz de vanguardia, noise, clásica contemporánea).</div></div>
+          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🪝 Enganche</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Esta canción te jala desde el primer segundo? Mide qué tan intensa, viva y difícil de ignorar es. Una canción con mucho enganche no te deja hacer scroll.</div></div>
+          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🚪 Accesibilidad</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿La podrías poner en una reunión sin que nadie se incomode? Alto = entra fácil, como pop melódico o indie suave. Bajo = requiere contexto, como noise rock, metal extremo o ambient denso.</div></div>
         </div>
       </div>
 
@@ -234,9 +234,9 @@
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px">
         <div style="font-size:0.65rem;letter-spacing:2px;color:#1DB954;font-weight:700;margin-bottom:12px">DATOS SPOTIFY</div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🔥 Energía</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">La intensidad que sientes. No es solo volumen: incluye velocidad y densidad. Metal = 98%. Canción de cuna = 5%.</div></div>
+          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🔥 Energía</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Cuánta gasolina tiene? No es solo volumen — es velocidad, densidad y presión sonora. Un himno de estadio revienta el 95%. Una nana lo roza apenas.</div></div>
           <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🎸 Acousticness</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Instrumento real o pantalla? Alto = guitarra, piano, voz sin procesar. Bajo = síntesis, samples, producción electrónica.</div></div>
-          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🥁 Tempo (BPM)</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El ritmo cardíaco de la canción. 60–80 = ballad, lo-fi. 120–130 = house, pop. 140–180 = techno, drum &amp; bass.</div></div>
+          <div><div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🥁 Tempo (BPM)</div><div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El pulso de la canción. 60–80 = balada, lo-fi, soul lento. 90–110 = hip-hop, rock medio. 120–130 = pop, house. 140–180 = techno, drum &amp; bass, punk.</div></div>
         </div>
       </div>
 
@@ -449,7 +449,7 @@ async function analyzeFile(file) {
     }
   }
 
-  // 5 Claude AI
+  // 5 DSP: engagement + approachability
   setStep('ai','active');
   const ai = classifyWithAI(acoustic, mood, spotifyFeatures, desc);
   desc.engagement      = ai.engagement;
@@ -815,8 +815,8 @@ function renderTrackCard(result, idx) {
     {key:'sad',           label:'Melancolía',             src:d.spotifyTrackName?'★ Spotify':d.moodSource},
     {key:'relaxed',       label:'Relajación',         src:d.moodSource},
     {key:'aggressive',    label:'Intensidad',      src:d.moodSource},
-    {key:'engagement',    label:'Enganche',      src:'🤖 Claude AI'},
-    {key:'approachability',label:'Accesibilidad',src:'🤖 Claude AI'},
+    {key:'engagement',    label:'Enganche',      src:'🔬 DSP'},
+    {key:'approachability',label:'Accesibilidad',src:'🔬 DSP'},
   ];
   const extras = d.spotifyTrackName ? [
     {key:'energy',label:'Energy'},
