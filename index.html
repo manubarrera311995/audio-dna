@@ -484,15 +484,19 @@ async function analyzeFile(file) {
   setStep('essentia','active');
   // Combinar modelos Essentia con heurísticas DSP para mayor diferenciación
   const essentiaScores = modelsReady
-    ? await runEssentiaModels(new Float32Array(workerResult.embeddings || []), sr)
+    ? await runEssentiaModels(workerResult.melPatches || [], workerResult.embeddings ? new Float32Array(workerResult.embeddings) : null, sr)
     : null;
   const hMood = workerResult.heuristicMood;
-  const mood = essentiaScores ? {
-    happy:     essentiaScores.happy     * 0.5 + hMood.happy     * 0.5,
-    sad:       essentiaScores.sad       * 0.5 + hMood.sad       * 0.5,
-    relaxed:   essentiaScores.relaxed   * 0.5 + hMood.relaxed   * 0.5,
-    aggressive:essentiaScores.aggressive* 0.5 + hMood.aggressive* 0.5,
-    danceable: essentiaScores.danceable * 0.5 + (hMood.danceable||0.5) * 0.5,
+  // Si Essentia da scores planos (todos ~0.5), ignorarlos y usar heurística
+  const essentiaFlat = essentiaScores && Object.values(essentiaScores)
+    .filter(v=>typeof v==='number').every(v=>Math.abs(v-0.5)<0.05);
+  const useEssentia = essentiaScores && !essentiaFlat;
+  const mood = useEssentia ? {
+    happy:     essentiaScores.happy     * 0.7 + hMood.happy     * 0.3,
+    sad:       essentiaScores.sad       * 0.7 + hMood.sad       * 0.3,
+    relaxed:   essentiaScores.relaxed   * 0.7 + hMood.relaxed   * 0.3,
+    aggressive:essentiaScores.aggressive* 0.7 + hMood.aggressive* 0.3,
+    danceable: essentiaScores.danceable * 0.7 + (hMood.danceable||0.5) * 0.3,
   } : hMood;
   setStep('essentia','done');
 
@@ -543,36 +547,30 @@ async function fetchSpotifyAudioFeatures(trackId) {
 // ================================================================
 // ESSENTIA MODELS
 // ================================================================
-async function runEssentiaModels(embeddings, sr) {
-  if (!modelsReady || !embeddings || embeddings.length === 0) return {};
+async function runEssentiaModels(melPatches, pseudoEmbeddings, sr) {
+  if (!modelsReady) return null;
+  if (!pseudoEmbeddings || pseudoEmbeddings.length < 200) return null;
+  const tensor = tf.tensor2d(pseudoEmbeddings, [1, 200]);
   const learningPhase = tf.scalar(false);
-  const tensor = tf.tensor2d(embeddings, [1, 200]);
-  const scores = {};
-
+  const scores = { happy:null, relaxed:null, aggressive:null, danceable:null };
   for (const [name, model] of Object.entries(essentiaModels)) {
-    if (!model) continue;
+    if (name === '_embedder' || !model) continue;
     try {
       let out;
       try { out = model.predict([tensor, learningPhase]); }
       catch(e2) { out = model.predict(tensor); }
       const data = await out.data(); out.dispose();
       scores[name] = data.length >= 2 ? data[1] : data[0];
-      console.log(`Score ${name}: ${scores[name].toFixed(3)}`);
-    } catch(e) { console.warn('predict', name, e.message); scores[name] = 0.5; }
+    } catch(e) { console.warn('predict', name, e.message); }
   }
-
-  tensor.dispose();
   learningPhase.dispose();
-
-  const result = {
-    happy:    scores.happy    ?? 0.5,
-    sad:      1 - (scores.happy ?? 0.5),
-    relaxed:  scores.relaxed  ?? 0.5,
-    aggressive: scores.aggressive ?? 0.5,
-    danceable:  scores.danceable  ?? 0.5
-  };
-  console.log('Mood scores:', JSON.stringify(Object.fromEntries(Object.entries(result).map(([k,v])=>[k,v.toFixed(3)]))));
-  return result;
+  tensor.dispose();
+  const valid = Object.values(scores).filter(v => v !== null);
+  if (valid.length === 0) return null;
+  for (const k of Object.keys(scores)) if (scores[k] === null) scores[k] = 0.5;
+  scores.sad = 1 - (scores.happy || 0.5);
+  console.log('Essentia scores:', JSON.stringify(Object.fromEntries(Object.entries(scores).map(([k,v])=>[k,v.toFixed(3)]))));
+  return scores;
 }
 
 // Genera vector de 200 features que aproxima embeddings MusiCNN
@@ -1256,6 +1254,32 @@ function computePseudoEmbeddings(mono, sr) {
   return out;
 }
 
+function computeMelPatches(mono, sr) {
+  const fSize = 512, hop = 256, nMels = 96, patchSize = 187, patchHop = 43;
+  if (mono.length < fSize) return [];
+  const melFilters = buildMelFilters(nMels, fSize, sr);
+  const allFrames = [];
+  for (let s = 0; s + fSize <= mono.length; s += hop) {
+    const frame = mono.slice(s, s + fSize);
+    const spec = fftMag(hannWin(frame));
+    const mel = new Float32Array(nMels);
+    for (let m = 0; m < nMels; m++) {
+      let e = 0;
+      for (let k = 0; k < melFilters[m].length; k++) e += melFilters[m][k] * (spec[k] || 0);
+      mel[m] = Math.log(e + 1e-8);
+    }
+    allFrames.push(mel);
+  }
+  if (allFrames.length < patchSize) return [];
+  const patches = [];
+  for (let i = 0; i + patchSize <= allFrames.length; i += patchHop) {
+    const patch = new Float32Array(patchSize * nMels);
+    for (let f = 0; f < patchSize; f++) patch.set(allFrames[i + f], f * nMels);
+    patches.push(patch);
+  }
+  return patches;
+}
+
 function computeHeuristicMood(mono, sr) {
   const f=computeAcousticFeatures(mono,sr);
   const rms=f.rms_mean||0,zcr=f.zcr_mean||0,c=f.centroid_mean||0,fl=f.flatness_mean||0;
@@ -1297,7 +1321,8 @@ self.onmessage = function(e) {
     acoustic.sampleRate = sr;
     const embeddings = computePseudoEmbeddings(sample, sr);
     const heuristicMood = computeHeuristicMood(sample, sr);
-    self.postMessage({ ok: true, acoustic, embeddings: Array.from(embeddings), heuristicMood });
+    const melPatches = computeMelPatches(sample, sr);
+    self.postMessage({ ok: true, acoustic, embeddings: Array.from(embeddings), melPatches, heuristicMood });
   } catch(err) {
     self.postMessage({ ok: false, error: err.message });
   }
