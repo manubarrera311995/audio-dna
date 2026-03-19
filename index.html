@@ -561,33 +561,10 @@ async function runEssentiaModels(melPatches, sr) {
   for (const patch of melPatches) {
     const melTensor = tf.tensor3d(patch, [1, 187, 96]);
     let embeddings = null;
-
     if (embedder) {
-      try {
-        // MusiCNN: usar execute() para extraer la capa de embeddings intermedia
-        // La capa model/dense/Relu produce los embeddings de 200 dims
-        let embRaw;
-        try {
-          embRaw = embedder.execute([melTensor, learningPhase], 'model/dense/Relu');
-        } catch(e1) {
-          try {
-            embRaw = embedder.execute(melTensor, 'model/dense/Relu');
-          } catch(e2) {
-            // Fallback: usar predict normal y tomar el output
-            try { embRaw = embedder.predict([melTensor, learningPhase]); }
-            catch(e3) { embRaw = embedder.predict(melTensor); }
-          }
-        }
-        // Normalizar z-score
-        const mean = embRaw.mean();
-        const std = embRaw.sub(mean).square().mean().sqrt().add(1e-8);
-        embeddings = embRaw.sub(mean).div(std);
-        embRaw.dispose(); mean.dispose(); std.dispose();
-        const sample = await embeddings.slice([0,0],[1,5]).data();
-        console.log('embeddings sample:', Array.from(sample).map(v=>v.toFixed(3)));
-      } catch(e) { console.warn('embedder error:', e.message); }
+      try { embeddings = embedder.predict([melTensor, learningPhase]); }
+      catch(e) { try { embeddings = embedder.predict(melTensor); } catch(e2) {} }
     }
-
     if (!embeddings) { melTensor.dispose(); continue; }
 
     for (const [name, model] of Object.entries(essentiaModels)) {
@@ -597,8 +574,7 @@ async function runEssentiaModels(melPatches, sr) {
         try { out = model.predict([embeddings, learningPhase]); }
         catch(e2) { out = model.predict(embeddings); }
         const data = await out.data(); out.dispose();
-        const score = data.length >= 2 ? data[1] : data[0];
-        scores[name].push(score);
+        scores[name].push(data.length >= 2 ? data[1] : data[0]);
       } catch(e) { console.warn('predict', name, e.message); }
     }
     embeddings.dispose();
