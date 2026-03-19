@@ -553,63 +553,51 @@ async function fetchSpotifyAudioFeatures(trackId) {
 // ESSENTIA MODELS
 // ================================================================
 async function runEssentiaModels(melPatches, sr) {
-  if (!modelsReady || !melPatches || melPatches.length === 0) {
-    console.warn('runEssentiaModels: no patches o modelos, melPatches=', melPatches?.length, 'modelsReady=', modelsReady);
-    return {};
-  }
-  console.log(`runEssentiaModels: ${melPatches.length} patches`);
+  if (!modelsReady || !melPatches || melPatches.length === 0) return {};
   const scores = { happy:[], relaxed:[], aggressive:[], danceable:[] };
   const embedder = essentiaModels._embedder;
   const learningPhase = tf.scalar(false);
 
-  for (let pi = 0; pi < Math.min(melPatches.length, 5); pi++) {
-    const raw = melPatches[pi];
-    const patch = raw instanceof Float32Array ? raw : new Float32Array(raw);
-    if (patch.length !== 187 * 96) { console.warn('patch size wrong:', patch.length); continue; }
-
-    const melTensor = tf.tensor3d(Array.from(patch), [1, 187, 96]);
+  for (const patch of melPatches) {
+    const melTensor = tf.tensor3d(patch, [1, 187, 96]);
     let embeddings = null;
 
     if (embedder) {
       try {
-        // Extraer capa de 200 dims (model/dense/Relu) en vez del output final (50 tags)
-        const result = await embedder.executeAsync(
-          { 'model/Placeholder': melTensor, 'model/Placeholder_1': learningPhase },
-          ['model/dense/Relu']
-        );
-        embeddings = Array.isArray(result) ? result[0] : result;
-        if (pi === 0) console.log('embeddings shape:', embeddings.shape, 'values sample:', Array.from(await embeddings.data()).slice(0,5).map(v=>v.toFixed(3)));
+        const raw = embedder.predict([melTensor, learningPhase]);
+        // Normalizar embeddings: BatchNorm manual (media 0, std 1)
+        const mean = raw.mean();
+        const variance = raw.sub(mean).square().mean();
+        const std = variance.sqrt().add(1e-8);
+        embeddings = raw.sub(mean).div(std);
+        raw.dispose(); mean.dispose(); variance.dispose(); std.dispose();
+        const sample = await embeddings.slice([0,0],[1,5]).data();
+        console.log('embeddings norm sample:', Array.from(sample).map(v=>v.toFixed(3)));
       } catch(e) {
-        console.warn('executeAsync error:', e.message);
-        // Fallback: usar predict normal (output 50 dims)
-        try { embeddings = embedder.predict([melTensor, learningPhase]); }
-        catch(e2) { try { embeddings = embedder.predict(melTensor); } catch(e3) { console.warn('predict fallback failed:', e3.message); } }
+        try {
+          const raw = embedder.predict(melTensor);
+          const mean = raw.mean();
+          const std = raw.sub(mean).square().mean().sqrt().add(1e-8);
+          embeddings = raw.sub(mean).div(std);
+          raw.dispose(); mean.dispose(); std.dispose();
+        } catch(e2) { console.warn('embedder failed:', e2.message); }
       }
     }
 
     if (!embeddings) { melTensor.dispose(); continue; }
 
-    // Redimensionar si es necesario (50 → 200 o ya es 200)
-    const embShape = embeddings.shape;
-    let embToUse = embeddings;
-    if (embShape[embShape.length-1] !== 200) {
-      console.warn('embeddings shape inesperado:', embShape, '— usando heurísticos');
-      embToUse.dispose(); melTensor.dispose(); continue;
-    }
-
     for (const [name, model] of Object.entries(essentiaModels)) {
       if (name === '_embedder' || !model) continue;
       try {
         let out;
-        try { out = model.predict([embToUse, learningPhase]); }
-        catch(e2) { out = model.predict(embToUse); }
+        try { out = model.predict([embeddings, learningPhase]); }
+        catch(e2) { out = model.predict(embeddings); }
         const data = await out.data(); out.dispose();
         const score = data.length >= 2 ? data[1] : data[0];
         scores[name].push(score);
-        if (pi === 0) console.log(`  ${name}: ${score.toFixed(3)}`);
+        console.log(`  ${name}: ${score.toFixed(3)}`);
       } catch(e) { console.warn('predict', name, e.message); }
     }
-    if (embToUse !== embeddings) embToUse.dispose();
     embeddings.dispose();
     melTensor.dispose();
   }
