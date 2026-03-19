@@ -492,11 +492,11 @@ async function analyzeFile(file) {
     .filter(v=>typeof v==='number').every(v=>Math.abs(v-0.5)<0.05);
   const useEssentia = essentiaScores && !essentiaFlat;
   const mood = useEssentia ? {
-    happy:     essentiaScores.happy     * 0.7 + hMood.happy     * 0.3,
-    sad:       essentiaScores.sad       * 0.7 + hMood.sad       * 0.3,
-    relaxed:   essentiaScores.relaxed   * 0.7 + hMood.relaxed   * 0.3,
-    aggressive:essentiaScores.aggressive* 0.7 + hMood.aggressive* 0.3,
-    danceable: essentiaScores.danceable * 0.7 + (hMood.danceable||0.5) * 0.3,
+    happy:     essentiaScores.happy,
+    sad:       essentiaScores.sad,
+    relaxed:   essentiaScores.relaxed,
+    aggressive:essentiaScores.aggressive,
+    danceable: essentiaScores.danceable,
   } : hMood;
   setStep('essentia','done');
 
