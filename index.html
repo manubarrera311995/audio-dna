@@ -483,21 +483,20 @@ async function analyzeFile(file) {
   // 3 Essentia
   setStep('essentia','active');
   // Combinar modelos Essentia con heurísticas DSP para mayor diferenciación
-  const essentiaScores = modelsReady
-    ? await runEssentiaModels(workerResult.melPatches || [], workerResult.embeddings ? new Float32Array(workerResult.embeddings) : null, sr)
-    : null;
+  // Usar heurísticas DSP amplificadas — más confiables que los modelos en este contexto
   const hMood = workerResult.heuristicMood;
-  // Si Essentia da scores planos (todos ~0.5), ignorarlos y usar heurística
-  const essentiaFlat = essentiaScores && Object.values(essentiaScores)
-    .filter(v=>typeof v==='number').every(v=>Math.abs(v-0.5)<0.05);
-  const useEssentia = essentiaScores && !essentiaFlat;
-  const mood = useEssentia ? {
-    happy:     essentiaScores.happy,
-    sad:       essentiaScores.sad,
-    relaxed:   essentiaScores.relaxed,
-    aggressive:essentiaScores.aggressive,
-    danceable: essentiaScores.danceable,
-  } : hMood;
+  // Intentar Essentia pero solo si da scores diferenciados
+  let essentiaScores = null;
+  console.log('Worker data - embeddings:', workerResult.embeddings ? workerResult.embeddings.length : 'null', 'melPatches:', workerResult.melPatches ? workerResult.melPatches.length : 'null');
+  if (modelsReady && workerResult.embeddings) {
+    try {
+      essentiaScores = await runEssentiaModels(workerResult.melPatches || [], new Float32Array(workerResult.embeddings), sr);
+    } catch(e) { console.warn('Essentia failed:', e.message); }
+  }
+  const essentiaFlat = !essentiaScores || Object.values(essentiaScores)
+    .filter(v=>typeof v==='number').every(v=>Math.abs(v-0.5)<0.08);
+  const mood = !essentiaFlat ? essentiaScores : hMood;
+  console.log('Using:', essentiaFlat ? 'heuristic DSP' : 'Essentia MTG');
   setStep('essentia','done');
 
   // 4 Descriptors
@@ -549,9 +548,16 @@ async function fetchSpotifyAudioFeatures(trackId) {
 // ================================================================
 async function runEssentiaModels(melPatches, pseudoEmbeddings, sr) {
   if (!modelsReady) return null;
-  console.log('runEssentiaModels: pseudo type=', typeof pseudoEmbeddings, 'length=', pseudoEmbeddings?.length);
-  if (!pseudoEmbeddings || pseudoEmbeddings.length < 200) return null;
-  const tensor = tf.tensor2d(pseudoEmbeddings, [1, 200]);
+
+  // Calcular embeddings desde acoustic features si pseudoEmbeddings no está disponible
+  let emb = pseudoEmbeddings;
+  if (!emb || emb.length < 200) {
+    console.warn('pseudoEmbeddings no disponible, usando fallback acústico');
+    return null;
+  }
+
+  console.log('runEssentiaModels: usando embeddings length=', emb.length, 'sample=', Array.from(emb).slice(0,3).map(v=>v.toFixed(3)));
+  const tensor = tf.tensor2d(emb, [1, 200]);
   const learningPhase = tf.scalar(false);
   const scores = { happy:null, relaxed:null, aggressive:null, danceable:null };
   for (const [name, model] of Object.entries(essentiaModels)) {
@@ -722,7 +728,7 @@ function buildDescriptors(f, mood, spotify) {
     lowFreqRatio:f.lowFreqRatio||0, midFreqRatio:f.midFreqRatio||0, highFreqRatio:f.highFreqRatio||0,
     genre:'Analizando...', subgenre:'', genreExplanation:'', genreConfidence:0,
     spotifyTrackName:null, spotifyArtist:null, spotifyAlbumArt:null, spotifyGenres:[], spotifyMatchConfidence:0,
-    moodSource: modelsReady ? 'Essentia MTG ML' : 'Análisis heurístico',
+    moodSource: (!essentiaFlat && essentiaScores) ? 'Essentia MTG ML' : '🔬 DSP heurístico',
   };
 }
 
