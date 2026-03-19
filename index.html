@@ -500,7 +500,7 @@ async function analyzeFile(file) {
   setStep('essentia','done');
 
   // 4 Descriptors
-  const desc = buildDescriptors(acoustic, mood, spotifyFeatures, useEssentia ? 'Essentia MTG ML' : '🔬 DSP heurístico');
+  const desc = buildDescriptors(acoustic, mood, spotifyFeatures, !essentiaFlat ? 'Essentia MTG ML' : '🔬 DSP heurístico');
 
   // Attach Spotify metadata
   if (spotifyMatch) {
