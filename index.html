@@ -564,24 +564,19 @@ async function runEssentiaModels(melPatches, sr) {
 
     if (embedder) {
       try {
-        const raw = embedder.predict([melTensor, learningPhase]);
-        // Normalizar embeddings: BatchNorm manual (media 0, std 1)
+        // MusiCNN tiene 2 placeholders: input + learning_phase
+        let raw;
+        try { raw = embedder.predict([melTensor, learningPhase]); }
+        catch(e1) { raw = embedder.predict(melTensor); }
+        // Normalizar: z-score por embedding
         const mean = raw.mean();
         const variance = raw.sub(mean).square().mean();
         const std = variance.sqrt().add(1e-8);
         embeddings = raw.sub(mean).div(std);
         raw.dispose(); mean.dispose(); variance.dispose(); std.dispose();
         const sample = await embeddings.slice([0,0],[1,5]).data();
-        console.log('embeddings norm sample:', Array.from(sample).map(v=>v.toFixed(3)));
-      } catch(e) {
-        try {
-          const raw = embedder.predict(melTensor);
-          const mean = raw.mean();
-          const std = raw.sub(mean).square().mean().sqrt().add(1e-8);
-          embeddings = raw.sub(mean).div(std);
-          raw.dispose(); mean.dispose(); std.dispose();
-        } catch(e2) { console.warn('embedder failed:', e2.message); }
-      }
+        console.log('embeddings norm:', Array.from(sample).map(v=>v.toFixed(3)));
+      } catch(e) { console.warn('embedder failed:', e.message); }
     }
 
     if (!embeddings) { melTensor.dispose(); continue; }
