@@ -503,24 +503,24 @@ async function analyzeFile(file) {
     const dspZcr    = Math.min(1, Math.max(0, (acoustic.zcr_mean||0) / 0.3));
     let { happy, sad, relaxed, aggressive, danceable } = mood;
 
-    // Si DSP dice energía muy baja (<0.15) y Essentia dice Intensidad alta → corregir
-    if (dspEnergy < 0.15 && aggressive > 0.55) {
-      const correction = (0.15 - dspEnergy) * 2.0;
+    // Si DSP dice energía muy baja (<0.2) y Essentia dice Intensidad alta → corregir más fuerte
+    if (dspEnergy < 0.2 && aggressive > 0.45) {
+      const correction = (0.2 - dspEnergy) * 3.5;
       aggressive = Math.max(0.05, aggressive - correction);
-      relaxed    = Math.min(0.92, relaxed    + correction * 0.8);
-      console.log('Calibración: energía DSP baja, reduciendo agresividad', dspEnergy.toFixed(3));
+      relaxed    = Math.min(0.95, relaxed    + correction * 1.0);
+      console.log('Calibración energía baja:', dspEnergy.toFixed(3), '→ corrección', correction.toFixed(3));
     }
-    // Si DSP dice energía muy alta (>0.75) y Essentia dice Relajación alta → corregir
-    if (dspEnergy > 0.75 && relaxed > 0.5) {
-      const correction = (dspEnergy - 0.75) * 1.5;
-      relaxed    = Math.max(0.08, relaxed    - correction);
-      aggressive = Math.min(0.92, aggressive + correction * 0.5);
+    // Si DSP dice energía muy alta (>0.7) y Essentia dice Relajación alta → corregir
+    if (dspEnergy > 0.7 && relaxed > 0.5) {
+      const correction = (dspEnergy - 0.7) * 2.0;
+      relaxed    = Math.max(0.05, relaxed    - correction);
+      aggressive = Math.min(0.95, aggressive + correction * 0.6);
     }
-    // Si ZCR muy bajo (canción suave) y aggressive alto → corregir
-    if (dspZcr < 0.1 && aggressive > 0.5) {
-      const correction = (0.1 - dspZcr) * 1.5;
+    // Si ZCR muy bajo (canción suave/atmosférica) → reforzar relajación
+    if (dspZcr < 0.08 && aggressive > 0.45) {
+      const correction = (0.08 - dspZcr) * 3.0;
       aggressive = Math.max(0.05, aggressive - correction);
-      relaxed    = Math.min(0.92, relaxed    + correction * 0.6);
+      relaxed    = Math.min(0.95, relaxed    + correction * 0.8);
     }
     mood = { happy, sad, relaxed, aggressive, danceable };
     console.log('Mood calibrado:', JSON.stringify(Object.fromEntries(Object.entries(mood).map(([k,v])=>[k,v.toFixed(3)]))));
