@@ -134,6 +134,15 @@
   @keyframes spin{to{transform:rotate(360deg)}}
   .export-btn{padding:12px 28px;background:transparent;border:1px solid var(--accent2);color:var(--accent2);font-family:'Space Mono',monospace;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-top:16px;}
   .export-btn:hover{background:var(--accent2);color:var(--bg);}
+
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
+  }
+  @keyframes marquee-glow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
 </style>
 </head>
 <body>
@@ -161,6 +170,22 @@
       <div style="color:var(--fg);font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:700;margin-top:4px;letter-spacing:1px">ESSENTIA MTG &nbsp;·&nbsp; SPOTIFY API &nbsp;·&nbsp; DSP</div>
     </div>
   </header>
+  <div style="overflow:hidden;white-space:nowrap;background:linear-gradient(90deg,var(--accent1)08,var(--accent2)15,var(--accent1)08);border-top:1px solid var(--accent1);border-bottom:1px solid var(--accent2);padding:12px 0;margin:0 0 8px 0;position:relative">
+    <span style="display:inline-block;animation:marquee-scroll 18s linear infinite;animation-fill-mode:both">
+      <span style="font-size:0.78rem;letter-spacing:4px;font-family:'Syne',sans-serif;font-weight:700;color:var(--fg)">ESCUCHAR UNA CANCIÓN ES UNA COSA</span>
+      <span style="font-size:0.9rem;margin:0 20px;color:var(--accent1)">◆</span>
+      <span style="font-size:0.78rem;letter-spacing:4px;font-family:'Syne',sans-serif;font-weight:700;color:var(--accent2)">ENTENDER DE QUÉ ESTÁ HECHA ES OTRA</span>
+      <span style="font-size:0.9rem;margin:0 20px;color:var(--accent2)">◆</span>
+      <span style="font-size:0.78rem;letter-spacing:4px;font-family:'Syne',sans-serif;font-weight:700;color:var(--fg)">ESCUCHAR UNA CANCIÓN ES UNA COSA</span>
+      <span style="font-size:0.9rem;margin:0 20px;color:var(--accent1)">◆</span>
+      <span style="font-size:0.78rem;letter-spacing:4px;font-family:'Syne',sans-serif;font-weight:700;color:var(--accent2)">ENTENDER DE QUÉ ESTÁ HECHA ES OTRA</span>
+      <span style="font-size:0.9rem;margin:0 20px;color:var(--accent2)">◆</span>
+      <span style="font-size:0.78rem;letter-spacing:4px;font-family:'Syne',sans-serif;font-weight:700;color:var(--fg)">ESCUCHAR UNA CANCIÓN ES UNA COSA</span>
+      <span style="font-size:0.9rem;margin:0 20px;color:var(--accent1)">◆</span>
+      <span style="font-size:0.78rem;letter-spacing:4px;font-family:'Syne',sans-serif;font-weight:700;color:var(--accent2)">ENTENDER DE QUÉ ESTÁ HECHA ES OTRA</span>
+      <span style="font-size:0.9rem;margin:0 20px;color:var(--accent1)">◆</span>
+    </span>
+  </div>
 
   <!-- SPOTIFY -->
   <div class="panel">
@@ -209,7 +234,6 @@
   <div class="info-panel">
     <h3>¿Qué significa cada métrica?</h3>
     <p>Cada canción tiene un ADN sonoro. Estas métricas exploran su ritmo, emoción y energía a través de tres capas combinadas: modelos de machine learning de <strong style="color:var(--accent1)">Essentia MTG</strong>, datos oficiales de <strong style="color:var(--spotify)">Spotify</strong> y análisis de señal digital <strong style="color:var(--accent2)">(DSP)</strong>.</p>
-    <p style="margin-top:8px">Juntas revelan de qué está hecha cada canción.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px">
 
@@ -218,22 +242,22 @@
           <div style="font-size:0.82rem;letter-spacing:2px;color:var(--accent1);font-weight:700">ESTADO DE ÁNIMO</div>
           <div style="font-size:0.62rem;letter-spacing:1px;color:var(--accent1);margin-top:3px">Essentia MTG</div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;flex-direction:column;gap:12px">
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">💃 Bailabilidad</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Sirve para bailar? Analiza si el beat es constante, los bajos son sólidos y el ritmo te invita a moverte. Un himno que no suelta = 90%. Una balada = 20%.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">💃 Bailabilidad</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">¿Sirve para bailar? Analiza si el beat es constante, los bajos son sólidos y el ritmo te invita a moverte. Un himno que no suelta = 90%. Una balada = 20%.</div>
           </div>
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">☀️ Alegría / 🌧 Melancolía</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">Captura la sensación emocional general de la canción. Alta = tono luminoso, energía positiva y sensación de euforia. Baja = atmósfera introspectiva, nostálgica o melancólica.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">☀️ Alegría / 🌧 Melancolía</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">Captura la sensación emocional general de la canción. Alta = tono luminoso, energía positiva y sensación de euforia. Baja = atmósfera introspectiva, nostálgica o melancólica.</div>
           </div>
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">🌿 Relajación</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Te da ganas de cerrar los ojos y respirar? Baja energía, pocos cambios y una textura sonora suave. Mide volumen, actividad rítmica y suavidad tímbrica.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🌿 Relajación</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">¿Te da ganas de cerrar los ojos y respirar? Baja energía, pocos cambios y una textura sonora suave. Mide volumen, actividad rítmica y suavidad tímbrica.</div>
           </div>
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">⚡ Intensidad</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">Tensión, agresividad y densidad sonora combinadas. Alta = el breakdown que genera el metal, el trap o el hardstyle. Baja = la canción que pones cuando llueve y no tienes prisa.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">⚡ Intensidad</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">Tensión, agresividad y densidad sonora combinadas. Alta = el breakdown que genera el metal, el trap o el hardstyle. Baja = la canción que pones cuando llueve y no tienes prisa.</div>
           </div>
         </div>
       </div>
@@ -243,14 +267,14 @@
           <div style="font-size:0.82rem;letter-spacing:2px;color:var(--accent2);font-weight:700">ATRACTIVO</div>
           <div style="font-size:0.62rem;letter-spacing:1px;color:var(--accent2);margin-top:3px">DSP</div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;flex-direction:column;gap:12px">
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">🪝 Enganche</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿La canción te atrapa desde el primer segundo? Mide qué tan difícil es ignorarla: intensidad, contraste y brillo sonoro. Cuanto mayor el enganche, más ganas dan de repetirla.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🪝 Enganche</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">¿La canción te atrapa desde el primer segundo? Mide qué tan difícil es ignorarla: intensidad, contraste y brillo sonoro. Cuanto mayor el enganche, más ganas dan de repetirla.</div>
           </div>
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">🚪 Accesibilidad</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿La podrías poner en una reunión sin que nadie se incomode? Alta = melódica, predecible y fácil de tararear, como pop o indie suave. Baja = requiere contexto, como noise rock, metal extremo o ambient denso.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🚪 Accesibilidad</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">¿La podrías poner en una reunión sin que nadie se incomode? Alta = melódica, predecible y fácil de tararear, como pop o indie suave. Baja = requiere contexto, es compleja o experimental como noise rock, metal extremo o ambient denso.</div>
           </div>
         </div>
       </div>
@@ -260,18 +284,18 @@
           <div style="font-size:0.82rem;letter-spacing:2px;color:var(--spotify);font-weight:700">DATOS SPOTIFY</div>
           <div style="font-size:0.62rem;letter-spacing:1px;color:var(--spotify);margin-top:3px">Web API</div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;flex-direction:column;gap:12px">
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">🔥 Energía</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">No es solo volumen — es velocidad, densidad y presión sonora. Mide qué tan viva o explosiva se siente la canción.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🔥 Energía</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">No es solo volumen — es velocidad, densidad y presión sonora. Mide qué tan viva o explosiva se siente la canción.</div>
           </div>
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">🎸 Acousticness</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">¿Instrumentos reales o producción digital? Alto = guitarra, piano o voz orgánica. Bajo = síntesis, samples y producción electrónica.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🎸 Acousticness</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">¿Instrumentos reales o producción digital? Alto = guitarra, piano o voz orgánica. Bajo = síntesis, samples y producción electrónica.</div>
           </div>
           <div>
-            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:7px">🥁 Tempo (BPM)</div>
-            <div style="font-size:0.72rem;color:var(--muted);line-height:1.5">El ritmo cardíaco de la canción, medido en beats por minuto. 60–80 = balada, lo-fi, soul lento. 90–110 = hip-hop, rock medio. 120–130 = pop, house. 140–180 = techno, drum &amp; bass, punk.</div>
+            <div style="font-size:0.75rem;font-weight:700;color:var(--fg);margin-bottom:3px">🥁 Tempo (BPM)</div>
+            <div style="font-size:0.72rem;color:var(--muted);line-height:1.6">Es el ritmo cardíaco de la canción, medido en beats por minuto. 60–80 = balada, lo-fi, soul lento. 90–110 = hip-hop, rock medio. 120–130 = pop, house. 140–180 = techno, drum &amp; bass, punk.</div>
           </div>
         </div>
       </div>
@@ -501,11 +525,12 @@ async function analyzeFile(file) {
   if (!essentiaFlat) {
     const dspEnergy = Math.min(1, Math.max(0, (acoustic.rms_mean||0) / 0.3));
     const dspZcr    = Math.min(1, Math.max(0, (acoustic.zcr_mean||0) / 0.3));
+    console.log('Calibración DSP: rms=', (acoustic.rms_mean||0).toFixed(4), 'dspEnergy=', dspEnergy.toFixed(3), 'zcr=', dspZcr.toFixed(3));
     let { happy, sad, relaxed, aggressive, danceable } = mood;
 
-    // Si DSP dice energía muy baja (<0.2) y Essentia dice Intensidad alta → corregir más fuerte
-    if (dspEnergy < 0.2 && aggressive > 0.45) {
-      const correction = (0.2 - dspEnergy) * 3.5;
+    // Si DSP dice energía baja (<0.35) y Essentia dice Intensidad alta → corregir
+    if (dspEnergy < 0.35 && aggressive > 0.45) {
+      const correction = (0.35 - dspEnergy) * 3.0;
       aggressive = Math.max(0.05, aggressive - correction);
       relaxed    = Math.min(0.95, relaxed    + correction * 1.0);
       console.log('Calibración energía baja:', dspEnergy.toFixed(3), '→ corrección', correction.toFixed(3));
@@ -779,29 +804,31 @@ async function classifyWithAI(acoustic, mood, spotify, desc) {
   const bpm        = acoustic.tempo_bpm    || 90;
   const minor      = (acoustic.scale==='menor'||acoustic.scale==='minor') ? 1 : 0.4;
 
-  // Nostalgia: máximo en tempo 75-100 BPM + acústico + tristeza + poca energía + suave
-  // Lo que diferencia nostalgia de oscuridad: es TRANQUILA y ACÚSTICA, no agresiva
-  const tempoNost  = Math.exp(-Math.pow(bpm-88,2)/(2*18*18)); // campana en 88 BPM
+  // NOSTALGIA: tristeza suave + acústico + calma + poca energía + SIN agresividad
+  // Clave: penaliza fuertemente la agresividad (lo opuesto a oscuridad)
+  const tempoNost  = Math.exp(-Math.pow(bpm-85,2)/(2*15*15));
   const nostalgia_raw =
-    0.30*(1-valence_)       +  // tristeza emocional
-    0.25*acoustic_          +  // instrumentos orgánicos (guitarra, piano)
-    0.20*(mood.relaxed||0.5)+  // calma, no tensión
-    0.15*(1-energy_)        +  // baja energía
-    0.10*tempoNost;            // tempo medio-lento
-  // Amplificar contraste
+    0.28*(1-valence_)                +  // tristeza emocional
+    0.22*acoustic_                   +  // instrumentos orgánicos
+    0.20*(mood.relaxed||0.5)         +  // calma
+    0.15*(1-energy_)                 +  // baja energía
+    0.10*tempoNost                   +  // tempo lento-medio
+    0.05*(1-(mood.aggressive||0.5)); // penalizar agresividad
+  // Sigmoide más pronunciada (steepness=6) → más polarización
   const nostalgia = Math.round(Math.min(100,Math.max(0,
-    (1/(1+Math.exp(-4*(nostalgia_raw-0.45))))*100
+    (1/(1+Math.exp(-6*(nostalgia_raw-0.42))))*100
   )));
 
-  // Oscuridad sonora: modo menor + tensión + timbre oscuro + densidad
-  // Lo que diferencia oscuridad de nostalgia: es DENSA y TENSA, puede ser intensa
+  // OSCURIDAD: modo menor + tensión + timbre oscuro + SIN elementos acústicos suaves
+  // Clave: penaliza acústico y relajación (lo opuesto a nostalgia)
   const oscuridad_raw =
-    0.35*minor                          +  // tonalidad menor (0 mayor, 1 menor)
-    0.25*(mood.aggressive||0.5)         +  // tensión y agresividad
-    0.25*(1-n(cent,800,8000))           +  // timbre oscuro (pocos agudos)
-    0.15*(1-valence_);                     // valencia negativa
+    0.30*minor                           +  // tonalidad menor
+    0.28*(mood.aggressive||0.5)          +  // tensión/agresividad
+    0.22*(1-n(cent,600,7000))            +  // timbre oscuro
+    0.12*(1-valence_)                    +  // valencia negativa
+    0.08*(1-acoustic_);                     // penalizar acústico suave
   const oscuridad = Math.round(Math.min(100,Math.max(0,
-    (1/(1+Math.exp(-4*(oscuridad_raw-0.45))))*100
+    (1/(1+Math.exp(-6*(oscuridad_raw-0.42))))*100
   )));
 
   return { engagement:Math.min(100,Math.max(0,engagement)), approachability:Math.min(100,Math.max(0,approachability)), nostalgia, oscuridad, genre:desc.genre, subgenre:'', confidence:0, explanation:'' };
@@ -1017,14 +1044,14 @@ function renderTrackCard(result, idx) {
       ${moods.map(m=>{const v=safeV(d[m.key]);return`<div class="mood-item"><div class="mood-name">${m.label}</div><div class="mood-bar-track"><div class="mood-bar-fill" id="bar-${idx}-${m.key}" style="background:${moodColor(v)}"></div></div><div class="mood-value" style="color:${moodColor(v)}">${v}<span style="font-size:0.9rem;color:var(--muted)">%</span></div><div class="mood-source">${m.src||''}</div></div>`;}).join('')}
     </div>
     ${sfBlock}
-    <div class="section-label" style="margin-top:8px">Bajo el capó — lo que dice la señal de audio</div>
+    <div class="section-label" style="margin-top:8px">MUSIC GENES — LO QUE DICE LA SEÑAL DE AUDIO</div>
     <table class="feature-table">
       <tr><th>Característica</th><th>Valor</th><th>Qué significa</th></tr>
-      <tr><td>Brillo del sonido</td><td class="feature-val">${safeN(d.spectralCentroid)} Hz</td><td style="color:var(--muted);font-size:0.72rem">Imagínalo como el "color" de la canción. Un valor bajo (menos de 2000 Hz) significa que los graves mandan — piensa en un beat de trap o una línea de bajo de soul. Un valor alto (más de 4000 Hz) es ese sonido abierto y chispeante del pop o la electrónica. Técnicamente, es el centro de masa del espectro de frecuencias.</td></tr>
-      <tr><td>Pureza del sonido</td><td class="feature-val">${safeN(d.spectralFlatness)}%</td><td style="color:var(--muted);font-size:0.72rem">Cerca de 0% = la canción tiene notas claras y definidas, como un piano o una guitarra acústica. Cerca de 100% = hay mucho "ruido" en la mezcla — saturación, distorsión o síntesis densa. Un solo de guitarra eléctrica con overdrive puede llegar al 60–70%.</td></tr>
-      <tr><td>Movimiento rítmico</td><td class="feature-val">${safeN(d.zeroCrossingRate)}%</td><td style="color:var(--muted);font-size:0.72rem">Mide cuántas veces la onda de audio "cruza el cero" por segundo — básicamente, qué tan agitada es la señal. Alto = hay mucha percusión, hi-hats rápidos o rap. Bajo = la canción fluye lento, como ambient o una balada. No mide el BPM, pero lo complementa.</td></tr>
-      <tr><td>Graves · Medios · Agudos</td><td class="feature-val">B:${safeN(d.lowFreqRatio)}% M:${safeN(d.midFreqRatio)}% A:${safeN(d.highFreqRatio)}%</td><td style="color:var(--muted);font-size:0.72rem">El balance del ecualizador de la canción. Graves (kick, bajo, sub) · Medios (voz, guitarra, teclas) · Agudos (hi-hats, brillo, aire). Una canción con 50%+ en graves suena "bassada"; con mucho agudo, suena "aérea" o brillante.</td></tr>
-      <tr><td>Volumen percibido</td><td class="feature-val">${safeN(d.loudness_db)} dB</td><td style="color:var(--muted);font-size:0.72rem">Qué tan fuerte "golpea" al oído, no solo qué tan alto está el volumen. Las canciones producidas para club o streaming agresivo rondan -6 a -9 dB. Una balada íntima o grabación acústica puede estar en -18 dB o menos. Más cerca de 0 = más "comprimido" y potente.</td></tr>
+      <tr><td>Brillo del sonido</td><td class="feature-val">${safeN(d.spectralCentroid)} Hz</td><td style="color:var(--muted);font-size:0.72rem">Imagínalo como el <strong>color de la canción</strong>. Valores <strong>bajos</strong> (menos de 2000 Hz) indican que dominan los graves — como un beat de trap o una línea de bajo de soul. Valores <strong>altos</strong> (más de 4000 Hz) suenan abiertos y chispeantes, como mucho pop o electrónica.</td></tr>
+      <tr><td>Pureza del sonido</td><td class="feature-val">${safeN(d.spectralFlatness)}%</td><td style="color:var(--muted);font-size:0.72rem">Indica qué tan <strong>limpio o ruidoso</strong> es el sonido. Cerca de <strong>0%</strong> = notas claras y definidas, como piano o guitarra acústica. Cerca de <strong>100%</strong> = más saturación, distorsión o síntesis densa. Un solo de guitarra eléctrica con overdrive puede llegar al 60–70%.</td></tr>
+      <tr><td>Movimiento rítmico</td><td class="feature-val">${safeN(d.zeroCrossingRate)}%</td><td style="color:var(--muted);font-size:0.72rem">Qué tan <strong>agitada</strong> está la señal de audio. Valores <strong>altos</strong> aparecen cuando hay mucha percusión, hi-hats rápidos o rap. Valores <strong>bajos</strong> indican una señal más estable, como ambient o baladas lentas. Técnicamente se basa en la cantidad de cruces por cero de la onda, una medida de actividad rítmica.</td></tr>
+      <tr><td>Graves · Medios · Agudos</td><td class="feature-val">B:${safeN(d.lowFreqRatio)}% M:${safeN(d.midFreqRatio)}% A:${safeN(d.highFreqRatio)}%</td><td style="color:var(--muted);font-size:0.72rem">El <strong>balance del ecualizador natural</strong> de la canción. <strong>Graves</strong> → kick, bajo, subfrecuencias. Medios → voz, guitarras, teclados. <strong>Agudos</strong> → hi-hats, brillo y "aire". Una canción con muchos graves suena más pesada o "bass-heavy". Con más agudos, suena brillante o aérea.</td></tr>
+      <tr><td>Volumen percibido</td><td class="feature-val">${safeN(d.loudness_db)} dB</td><td style="color:var(--muted);font-size:0.72rem">No solo es su volumen técnico, sino qué tan fuerte <strong>se percibe</strong> la canción. Las producciones modernas para club o streaming suelen estar entre <strong>-6 y -9 dB</strong>. Grabaciones acústicas o baladas íntimas pueden estar en <strong>-18 dB o menos</strong>. Cuanto más cerca de 0, más <strong>comprimido y potente</strong> suena el track.</td></tr>
     </table>`;
   trackResults.appendChild(card);
 
