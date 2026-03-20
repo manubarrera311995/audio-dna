@@ -779,16 +779,30 @@ async function classifyWithAI(acoustic, mood, spotify, desc) {
   const bpm        = acoustic.tempo_bpm    || 90;
   const minor      = (acoustic.scale==='menor'||acoustic.scale==='minor') ? 1 : 0.4;
 
-  // Nostalgia: tono triste + acústico + relajado + tempo medio (campana en 95 BPM)
-  const tempoMid   = Math.exp(-Math.pow(bpm-95,2)/(2*20*20));
-  const nostalgia  = Math.round(Math.min(100,Math.max(0,(
-    0.35*(1-valence_) + 0.25*acoustic_ + 0.20*(mood.relaxed||0.5) + 0.10*(1-energy_) + 0.10*tempoMid
-  )*100)));
+  // Nostalgia: máximo en tempo 75-100 BPM + acústico + tristeza + poca energía + suave
+  // Lo que diferencia nostalgia de oscuridad: es TRANQUILA y ACÚSTICA, no agresiva
+  const tempoNost  = Math.exp(-Math.pow(bpm-88,2)/(2*18*18)); // campana en 88 BPM
+  const nostalgia_raw =
+    0.30*(1-valence_)       +  // tristeza emocional
+    0.25*acoustic_          +  // instrumentos orgánicos (guitarra, piano)
+    0.20*(mood.relaxed||0.5)+  // calma, no tensión
+    0.15*(1-energy_)        +  // baja energía
+    0.10*tempoNost;            // tempo medio-lento
+  // Amplificar contraste
+  const nostalgia = Math.round(Math.min(100,Math.max(0,
+    (1/(1+Math.exp(-4*(nostalgia_raw-0.45))))*100
+  )));
 
-  // Oscuridad sonora: modo menor + agresividad + tristeza + timbre oscuro
-  const oscuridad  = Math.round(Math.min(100,Math.max(0,(
-    0.35*minor + 0.25*(mood.aggressive||0.5) + 0.20*(1-valence_) + 0.20*(1-n(cent,500,8000))
-  )*100)));
+  // Oscuridad sonora: modo menor + tensión + timbre oscuro + densidad
+  // Lo que diferencia oscuridad de nostalgia: es DENSA y TENSA, puede ser intensa
+  const oscuridad_raw =
+    0.35*minor                          +  // tonalidad menor (0 mayor, 1 menor)
+    0.25*(mood.aggressive||0.5)         +  // tensión y agresividad
+    0.25*(1-n(cent,800,8000))           +  // timbre oscuro (pocos agudos)
+    0.15*(1-valence_);                     // valencia negativa
+  const oscuridad = Math.round(Math.min(100,Math.max(0,
+    (1/(1+Math.exp(-4*(oscuridad_raw-0.45))))*100
+  )));
 
   return { engagement:Math.min(100,Math.max(0,engagement)), approachability:Math.min(100,Math.max(0,approachability)), nostalgia, oscuridad, genre:desc.genre, subgenre:'', confidence:0, explanation:'' };
 }
