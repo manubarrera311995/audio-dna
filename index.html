@@ -495,8 +495,40 @@ async function analyzeFile(file) {
   }
   const essentiaFlat = !essentiaScores || Object.values(essentiaScores)
     .filter(v=>typeof v==='number').every(v=>Math.abs(v-0.5)<0.08);
-  const mood = !essentiaFlat ? essentiaScores : hMood;
-  console.log('Using:', essentiaFlat ? 'heuristic DSP' : 'Essentia MTG');
+  let mood = !essentiaFlat ? essentiaScores : hMood;
+
+  // Calibración con Spotify: si Energy o Danceability de Spotify es muy extremo,
+  // corregir los scores de Essentia que van en contra
+  if (!essentiaFlat && spotifyFeatures) {
+    const spEnergy    = spotifyFeatures.energy    != null ? spotifyFeatures.energy    : null;
+    const spDance     = spotifyFeatures.danceability != null ? spotifyFeatures.danceability : null;
+    const spValence   = spotifyFeatures.valence    != null ? spotifyFeatures.valence    : null;
+    let { happy, sad, relaxed, aggressive, danceable } = mood;
+
+    // Si Spotify dice Energy muy baja (<0.25) y Essentia dice Intensidad alta → corregir
+    if (spEnergy !== null && spEnergy < 0.25 && aggressive > 0.5) {
+      const correction = (0.25 - spEnergy) * 1.5; // hasta 0.375 de corrección
+      aggressive = Math.max(0.05, aggressive - correction);
+      relaxed    = Math.min(0.95, relaxed    + correction);
+    }
+    // Si Spotify dice Energy muy alta (>0.8) y Essentia dice Relajación alta → corregir
+    if (spEnergy !== null && spEnergy > 0.8 && relaxed > 0.5) {
+      const correction = (spEnergy - 0.8) * 1.5;
+      relaxed    = Math.max(0.05, relaxed    - correction);
+      aggressive = Math.min(0.95, aggressive + correction);
+    }
+    // Si Spotify dice Danceability muy baja (<0.3) → reducir danceable
+    if (spDance !== null && spDance < 0.3 && danceable > 0.5) {
+      danceable = Math.max(0.05, danceable - (0.3 - spDance));
+    }
+    // Si Spotify dice Valence muy baja (<0.2) → reforzar melancolía
+    if (spValence !== null && spValence < 0.2 && happy > 0.4) {
+      happy = Math.max(0.05, happy - (0.4 - spValence));
+      sad   = 1 - happy;
+    }
+    mood = { happy, sad, relaxed, aggressive, danceable };
+  }
+  console.log('Using:', essentiaFlat ? 'heuristic DSP' : 'Essentia MTG (calibrado)');
   setStep('essentia','done');
 
   // 4 Descriptors
