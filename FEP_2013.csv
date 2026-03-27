@@ -1,0 +1,263 @@
+id,banda,canción,fecha,hora_de_inicio,hora_de_finalizacion,escenario,pais ,ciudad,idioma 
+DE_1,Diamante Eléctrico,Retroceder,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_2,Diamante Eléctrico,Combustión ,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_3,Diamante Eléctrico,Telescopio,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_4,Diamante Eléctrico,Cicatriz,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_5,Diamante Eléctrico,Todo va a arder,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_6,Diamante Eléctrico,Kamikaze,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_7,Diamante Eléctrico,Té para 3 (cover),05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_8,Diamante Eléctrico,Nos rompemos igual,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+DE_9,Diamante Eléctrico,Diamante eléctrico,05-04-2013,16:15,17:00,Picnic,Colombia,Bogotá,Español
+TD_1,Two Door Cinema Club ,Sleep Alone,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_2,Two Door Cinema Club ,Undercover Martyn,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_3,Two Door Cinema Club ,Do You Want It All ?,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_4,Two Door Cinema Club ,This Is The Life,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_5,Two Door Cinema Club ,Wake Up,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_6,Two Door Cinema Club ,You're Not Stubborn,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_7,Two Door Cinema Club ,Sun,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_8,Two Door Cinema Club ,Pyramid,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_9,Two Door Cinema Club ,I Can Talk,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_10,Two Door Cinema Club ,Next Year,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_11,Two Door Cinema Club ,Something Good Can Work,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_12,Two Door Cinema Club ,Handshake,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_13,Two Door Cinema Club ,"Eat That Up, It's Good for You",05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_14,Two Door Cinema Club ,Someday,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+TD_15,Two Door Cinema Club ,What You Know,05-04-2013,17:30,18:45,Picnic,Reino Unido,Bangor,Inglés
+LL_1,León Larregui ,Aurora Boreal,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_2,León Larregui ,Carmín,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_3,León Larregui ,Perdonar,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_4,León Larregui ,Souvenir,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_5,León Larregui ,Brillas,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_6,León Larregui ,Resistolux,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_7,León Larregui ,Pérdida total,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_8,León Larregui ,Resguardom Ether,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_9,León Larregui ,Femme Fatal,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+LL_10,León Larregui ,Como tú,05-04-2013,19:15,20:15,Picnic,México,Ciudad de México,Español
+SNB_1,Silencio No Hay Banda,La Prisión,05-04-2013,20:45,21:30,Picnic,Colombia,Bogotá,Español
+SNB_2,Silencio No Hay Banda,Alpha Centauri,05-04-2013,20:45,21:30,Picnic,Colombia,Bogotá,Español
+SNB_3,Silencio No Hay Banda,Bicycle Day,05-04-2013,20:45,21:30,Picnic,Colombia,Bogotá,Español
+VM_1,Vetusta Morla,Los Días Raros,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_2,Vetusta Morla,Boca en la Tierra,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_3,Vetusta Morla,Un Día en el Mundo,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_4,Vetusta Morla,Copenhague,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_5,Vetusta Morla,Maldita Dulzura,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_6,Vetusta Morla,El Hombre del Saco,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_7,Vetusta Morla,Mapas,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_8,Vetusta Morla,Baldosas Amarillas,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_9,Vetusta Morla,Sálvese Quien Pueda,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_10,Vetusta Morla,Valiente,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_11,Vetusta Morla,Lo Que Te Hace Grande,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+VM_12,Vetusta Morla,La Cuadratura del Círculo,05-04-2013,22:00,23:00,Picnic,España,Madrid,Español
+FL_1,Foals,Prelude,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_2,Foals,Olympic Airways,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_3,Foals,Balloons,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_4,Foals,My Number,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_5,Foals,Blue Blood,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_6,Foals,Late Night,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_7,Foals,Providence,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_8,Foals,Spanish Sahara,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_9,Foals,Red Socks Pugie,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_10,Foals,Electric Bloom,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_11,Foals,Inhaler,05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+FL_12,Foals,"Two Steps, Twice",05-04-2013,23:30,0:45,Picnic,Reino Unido,Oxford,Inglés
+STA_1,Steve Aoki,Boneless,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_2,Steve Aoki,Aoki Jump,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_3,Steve Aoki,Year Million,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_4,Steve Aoki,Singularity,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_5,Steve Aoki,Livin My Love,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_6,Steve Aoki,Turbulence,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_7,Steve Aoki,Shotgun Music 1.9 (Ken Loi Botup),05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_8,Steve Aoki,Warp 1.9,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_9,Steve Aoki,New Noise,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_10,Steve Aoki,Steve Jobs,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_11,Steve Aoki,Phat Brahms,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_12,Steve Aoki,Piledriver,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_13,Steve Aoki,Bring You To Life (Transcend),05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_14,Steve Aoki,No Beef,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_15,Steve Aoki,Omega,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_16,Steve Aoki,Come With Me,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_17,Steve Aoki,Ladi Dadi,05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+STA_18,Steve Aoki,Pursuit of Happiness (Nightmare),05-04-2013,1:15,2:45,Picnic,Estados Unidos,Newport Beach,Inglés
+CR_1,Carlos Reyes & La Killer Band,Somos Hermanos,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_2,Carlos Reyes & La Killer Band,Lo Que Queda de Mi,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_3,Carlos Reyes & La Killer Band,Ganar o Perder,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_4,Carlos Reyes & La Killer Band,Aquel Abril,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_5,Carlos Reyes & La Killer Band,El Fantasma de Edwin,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_6,Carlos Reyes & La Killer Band,Pregunta por Mi,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_7,Carlos Reyes & La Killer Band,Cuando me Atraparon (U.P.J),07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_8,Carlos Reyes & La Killer Band,En Algún Lugar,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_9,Carlos Reyes & La Killer Band,Abajo de la 15,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+CR_10,Carlos Reyes & La Killer Band,Sin Mirar Atrás,07-04-2013,12:30,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_1,Meridian Brothers,Desesperanza,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_2,Meridian Brothers,Homenaje a la Mujer Colombiana,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_3,Meridian Brothers,Salsa Caliente,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_4,Meridian Brothers,La Gitana Me Ha Dejado,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_5,Meridian Brothers,Fiesta,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_6,Meridian Brothers,Soy El Pinchadiscos Del Amor,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_7,Meridian Brothers,Purple Haze (The Jimi Hendrix Experience cover),07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Inglés
+MBT_8,Meridian Brothers,Guaracha U.F.O.,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+MBT_9,Meridian Brothers,Salsa del Zombie,07-04-2013,13:15,13:15,Estéreo,Colombia,Bogotá,Español
+JCL_1,Juan Cirerol,Eso Es Correcto Señor,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+JCL_2,Juan Cirerol,Clonazepam Blues,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+JCL_3,Juan Cirerol,La Novia del Pajarillo ,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+JCL_4,Juan Cirerol,La Florecilla,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+JCL_5,Juan Cirerol,Crema Dulce,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+JCL_6,Juan Cirerol,Se Vale Soñar,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+JCL_7,Juan Cirerol,Noches de Prisa,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+JCL_8,Juan Cirerol,Metanfeta,07-04-2013,15:00,15:45,Estéreo,México,Mexicali,Español
+CMS_1,Carla Morrison,Me Encanta,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_2,Carla Morrison,Compartir,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_3,Carla Morrison,Me Puede/Falta de Respeto,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_4,Carla Morrison,Maleza,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_5,Carla Morrison,Hasta La Piel,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_6,Carla Morrison,Pajarito de Amor,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_7,Carla Morrison,Cómo Es,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_8,Carla Morrison,Lágrimas,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_9,Carla Morrison,Déjenme Llorar,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_10,Carla Morrison,Eres Tú,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+CMS_11,Carla Morrison,Yo Sigo Aquí,07-04-2013,16:15,17:15,Estéreo,México,Tecate,Español
+ETM_1,Esteman,Intro,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_2,Esteman,El Distractor,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_3,Esteman,Agüita de Coco,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_4,Esteman,La Cosita Tropical,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_5,Esteman,De Otro Planeta,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_6,Esteman,Pobre Corazón,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_7,Esteman,Robot,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_8,Esteman,True Love,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_9,Esteman,Aquí Estoy Yo,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+ETM_10,Esteman,El Pimentón,07-04-2013,17:45,18:30,Estéreo,Colombia,Bogotá,Español
+CTV_1,Café Tacvba,El Baile y El Salón,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_2,Café Tacvba,Como Te Extraño Mi Amor (Leo Dan Cover),07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_3,Café Tacvba,Las Flores,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_4,Café Tacvba,La Ingrata,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_5,Café Tacvba,Olita de Altamar,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_6,Café Tacvba,Cero y Uno,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_7,Café Tacvba,Volver a Comenzar,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_8,Café Tacvba,Déjate Caer (Los Tres Cover),07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_9,Café Tacvba,Chilanga Banda ,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_10,Café Tacvba,El Fin de la Infancia,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_11,Café Tacvba,La Chica de la Banda,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_12,Café Tacvba,De Este Lado del Camino,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_13,Café Tacvba,Aprovéchate,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_14,Café Tacvba,Eres,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+CTV_15,Café Tacvba,Esa Noche,07-04-2013,19:00,20:15,Estéreo,México,Naucalpan de Juárez,Español
+NOR_1,New Order,The Ecstasy of Gold (Elio Morricone Song),07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_2,New Order,Elegia,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_3,New Order,Crystal (con Brandon Flowers),07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_4,New Order,Regret,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_5,New Order,I'll Stay With You,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_6,New Order,Ceremony,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_7,New Order,Age of Consent,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_8,New Order,Isolation (Joy Division cover),07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_9,New Order,Your Silence Face,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_10,New Order,Bizarre Love Triangle,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_11,New Order,5 8 6,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_12,New Order,True Faith,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_13,New Order,The Perfect Kiss,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_14,New Order,Blue Monday,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_15,New Order,Temptation,07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_16,New Order,Atmosphere (Joy Division cover),07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_17,New Order,Transmission (Joy Division cover),07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+NOR_18,New Order,Love Will Tear Us Apart (Joy Division cover),07-04-2013,20:45,22:15,Estéreo,Reino Unido,Salford,Inglés
+TKL_1,The Killers,Mr. Brightside,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_2,The Killers,Spaceman,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_3,The Killers,The Way It Was,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_4,The Killers,Smile Like You Mean It,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_5,The Killers,Here With Me,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_6,The Killers,This Is Your Life,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_7,The Killers,Miss Atomic Bomb,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_8,The Killers,Human,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_9,The Killers,Somebody Told Me,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_10,The Killers,For Reasons Unknown,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_11,The Killers,From Here On Out,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_12,The Killers,A Dustland Fairytale,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_13,The Killers,Read My Mind,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_14,The Killers,Runaways,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_15,The Killers,All The Things I've Done,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_16,The Killers,Shadowplay (Joy Division cover with Bernard Sumner),07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_17,The Killers,Jenny Was a Friend of Mine,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+TKL_18,The Killers,When You Where Young,07-04-2013,23:00,2:45,Estéreo,Estados Unidos,Las Vegas,Inglés
+MRB_1,Mr. Bleat,Mr. Disco,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+MRB_2,Mr. Bleat,Tu Boquita,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+MRB_3,Mr. Bleat,Canción de Moda,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+MRB_4,Mr. Bleat,Bipolar,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+MRB_5,Mr. Bleat,Lejos de Casa,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+MRB_6,Mr. Bleat,Extrafalaria,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+MRB_7,Mr. Bleat,Mirada Viene Mirada Va,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+MRB_8,Mr. Bleat,Ailandia,07-04-2013,13:00,13:45,Picnic,Colombia,Medellín,Español
+PNM_1,Panorama,Tapete Rojo,07-04-2013,14:15,15:00,Picnic,Colombia,Medellín,Español
+PNM_2,Panorama,Trampa,07-04-2013,14:15,15:00,Picnic,Colombia,Medellín,Español
+PNM_3,Panorama,No Encuentro Las Palabras,07-04-2013,14:15,15:00,Picnic,Colombia,Medellín,Español
+PNM_4,Panorama,Paranoia,07-04-2013,14:15,15:00,Picnic,Colombia,Medellín,Español
+PNM_5,Panorama,Sol Brillar,07-04-2013,14:15,15:00,Picnic,Colombia,Medellín,Español
+PLN_1,Planes,Barco de Río,07-04-2013,15:15,16:00,Picnic,Colombia,Bogotá,Español
+PLN_2,Planes,Cosas Importantes,07-04-2013,15:15,16:00,Picnic,Colombia,Bogotá,Español
+PLN_3,Planes,Santa Marta,07-04-2013,15:15,16:00,Picnic,Colombia,Bogotá,Español
+PLN_4,Planes,Romero y Juliet,07-04-2013,15:15,16:00,Picnic,Colombia,Bogotá,Español
+PLN_5,Planes,Vecindad,07-04-2013,15:15,16:00,Picnic,Colombia,Bogotá,Español
+PER_1,Pernett,La Rumba Bacana,07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Español
+PER_2,Pernett,Huele a Mariacacha,07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Español
+PER_3,Pernett,Fantasía Tropical,07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Español
+PER_4,Pernett,Esta Noche,07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Español
+PER_5,Pernett,Cumbia Computer,07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Español
+PER_6,Pernett,The Caribbean Raver,07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Español
+PER_7,Pernett,Hoy es mañana,07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Español
+PER_8,Pernett,Blue Monday (New Order cover),07-04-2013,16:30,17:15,Picnic,Colombia,Barranquilla,Inglés
+ALC_1,Alcolirycoz,Comediantes de Velorio,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+ALC_2,Alcolirycoz,Clapzz,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+ALC_3,Alcolirycoz,1999,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+ALC_4,Alcolirycoz,Los Genios de la Botella,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+ALC_5,Alcolirycoz,La Revancha de los Tímidos,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+ALC_6,Alcolirycoz,Acrobacias,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+ALC_7,Alcolirycoz,Clases de Etiqueta,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+ALC_8,Alcolirycoz,Erre con Erre,07-04-2013,17:45,18:30,Picnic,Colombia,Medellín,Español
+OND_1,Ondatrópica,Suena,07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+OND_2,Ondatrópica,Punkero Sonidero,07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+OND_3,Ondatrópica,I Ron Man,07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+OND_4,Ondatrópica,"Tiene Sabor, Tiene Razón",07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+OND_5,Ondatrópica,Linda Mañana,07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+OND_6,Ondatrópica,Cumbia Espacial,07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+OND_7,Ondatrópica,Descarga Trópica,07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+OND_8,Ondatrópica,Ska Fuentes,07-04-2013,19:00,19:45,Picnic,Colombia,Bogotá,Español
+MJZ_1,Major Lazer,Mashup the Dance,07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_2,Major Lazer,Who (Tujamo & Plastik Funk cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_3,Major Lazer,Kick Out the Epic Motherfucker (Dada Life cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_4,Major Lazer,Differentology  (Bunji Garlin cover) (Major Lazer Remix),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_5,Major Lazer,The Lion (The Partysquad cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_6,Major Lazer,Jet Blue Jet,07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_7,Major Lazer,Original Don,07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_8,Major Lazer,Watch Out (Doctor P cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_9,Major Lazer,Harlem Shake (Baauer cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_10,Major Lazer,Oh My (The Partysquad cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_11,Major Lazer,Computation (Dismantle cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_12,Major Lazer,Heads Will Roll (Yeah Yeah Yeahs cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_13,Major Lazer,Jah No Partial,07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_14,Major Lazer,"Make It Bun Dem (Skrillex & Damian ""Jr. Gong"" Marley cover)",07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_15,Major Lazer,Welcome to Jamrock (Damian “Jr. Gong” Marley cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_16,Major Lazer,Get Free,07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_17,Major Lazer,Jump Around (House of Pain cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_18,Major Lazer,Hold You (Gyptian cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_19,Major Lazer,All Gold Everything (Trinidad James cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_20,Major Lazer,Watch Out for This (Bumaye),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_21,Major Lazer,Express Yourself (Diplo feat. Nicky Da B cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_22,Major Lazer,Cannonball (Showtek cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_23,Major Lazer,Smells Like Teen Spirit (Nirvana cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_24,Major Lazer,Hold the Line,07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_25,Major Lazer,Scumbag (Bro Safari cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_26,Major Lazer,Drop It Like It's Hot (Snoop Dogg cover),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+MJZ_27,Major Lazer,Get Free (Andy C Remix),07-04-2013,20:15,21:30,Picnic,Estados Unidos,Los Ángeles,Inglés
+CCS_1,Crystal Castles,Plague,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_2,Crystal Castles,Baptism,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_3,Crystal Castles,Suffocation,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_4,Crystal Castles,Wrath of God,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_5,Crystal Castles,Crimewave,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_6,Crystal Castles,Telepath,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_7,Crystal Castles,Alice Practice,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_8,Crystal Castles,Black Panther,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_9,Crystal Castles,Celestica,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_10,Crystal Castles,Vanished,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_11,Crystal Castles,Transgender,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_12,Crystal Castles,Untrust Us,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_13,Crystal Castles,Violent Dreams,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_14,Crystal Castles,Sad Eyes,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
+CCS_15,Crystal Castles,Not in Love,07-04-2013,22:00,23:00,Picnic,Canadá,Toronto,Inglés
