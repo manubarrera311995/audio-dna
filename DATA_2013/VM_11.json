@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "11. Vetusta Morla - Lo Que Te Hace Grande.mp3",
+    "danceability": 26,
+    "happy": 24,
+    "sad": 76,
+    "relaxed": 66,
+    "aggressive": 16,
+    "engagement": 25,
+    "approachability": 83,
+    "energy": 42,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 112,
+    "keyNote": "E",
+    "scale": "Menor",
+    "loudness_db": -18,
+    "spectralCentroid": 970,
+    "spectralRolloff": 1680,
+    "spectralFlatness": 16,
+    "zeroCrossingRate": 6.55,
+    "lowFreqRatio": 16,
+    "midFreqRatio": 63,
+    "highFreqRatio": 21,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Lo Que Te Hace Grande",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d00004851998588b51cf6bd91ba2d0269",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 252.48,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

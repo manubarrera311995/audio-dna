@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "5. Foals - Blue Blood.mp3",
+    "danceability": 27,
+    "happy": 20,
+    "sad": 80,
+    "relaxed": 75,
+    "aggressive": 9,
+    "engagement": 16,
+    "approachability": 86,
+    "energy": 29,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 102,
+    "keyNote": "A",
+    "scale": "Menor",
+    "loudness_db": -21,
+    "spectralCentroid": 811,
+    "spectralRolloff": 1584,
+    "spectralFlatness": 13,
+    "zeroCrossingRate": 5.22,
+    "lowFreqRatio": 31,
+    "midFreqRatio": 52,
+    "highFreqRatio": 17,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Blue Blood",
+    "spotifyArtist": "Foals",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d00004851b0303486d8c9b6a8deb61012",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 297.2850625,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

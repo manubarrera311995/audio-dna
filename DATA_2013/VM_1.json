@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "1. Vetusta Morla - Los días raros.mp3",
+    "danceability": 24,
+    "happy": 8,
+    "sad": 92,
+    "relaxed": 83,
+    "aggressive": 3,
+    "engagement": 9,
+    "approachability": 88,
+    "energy": 14,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 100,
+    "keyNote": "A",
+    "scale": "Menor",
+    "loudness_db": -27,
+    "spectralCentroid": 688,
+    "spectralRolloff": 1112,
+    "spectralFlatness": 11,
+    "zeroCrossingRate": 4.99,
+    "lowFreqRatio": 39,
+    "midFreqRatio": 50,
+    "highFreqRatio": 11,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Los Días Raros",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d00004851998588b51cf6bd91ba2d0269",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 80,
+    "moodSource": "Análisis heurístico",
+    "duration": 407.963,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

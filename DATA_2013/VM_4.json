@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "4. Vetusta Morla - Copenhague.mp3",
+    "danceability": 36,
+    "happy": 30,
+    "sad": 70,
+    "relaxed": 63,
+    "aggressive": 18,
+    "engagement": 14,
+    "approachability": 63,
+    "energy": 15,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 177,
+    "keyNote": "F",
+    "scale": "Menor",
+    "loudness_db": -27,
+    "spectralCentroid": 1696,
+    "spectralRolloff": 3022,
+    "spectralFlatness": 33,
+    "zeroCrossingRate": 14.68,
+    "lowFreqRatio": 21,
+    "midFreqRatio": 49,
+    "highFreqRatio": 30,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Copenhague",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d000048514abd2851d3681abb6a6d9ce9",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 334.3209375,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

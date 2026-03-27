@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "18. Kid Cudi - Pursuit Of Happiness (Nightmare).mp3",
+    "danceability": 34,
+    "happy": 35,
+    "sad": 65,
+    "relaxed": 59,
+    "aggressive": 22,
+    "engagement": 25,
+    "approachability": 68,
+    "energy": 37,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 147,
+    "keyNote": "E",
+    "scale": "Menor",
+    "loudness_db": -19,
+    "spectralCentroid": 1669,
+    "spectralRolloff": 3165,
+    "spectralFlatness": 29,
+    "zeroCrossingRate": 10.9,
+    "lowFreqRatio": 15,
+    "midFreqRatio": 54,
+    "highFreqRatio": 31,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Pursuit Of Happiness (Nightmare)",
+    "spotifyArtist": "Kid Cudi, MGMT, Ratatat",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d00004851713f297a7bdc1d48971062b2",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 301.011875,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

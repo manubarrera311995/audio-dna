@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "6. Foals - Late Night.mp3",
+    "danceability": 42,
+    "happy": 23,
+    "sad": 77,
+    "relaxed": 75,
+    "aggressive": 10,
+    "engagement": 24,
+    "approachability": 91,
+    "energy": 35,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 95,
+    "keyNote": "D",
+    "scale": "Menor",
+    "loudness_db": -20,
+    "spectralCentroid": 599,
+    "spectralRolloff": 974,
+    "spectralFlatness": 9,
+    "zeroCrossingRate": 4.37,
+    "lowFreqRatio": 49,
+    "midFreqRatio": 37,
+    "highFreqRatio": 14,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Late Night",
+    "spotifyArtist": "Foals",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d000048518b04dacf186124a62bc667a7",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 327.8889375,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

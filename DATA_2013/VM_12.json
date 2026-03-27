@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "12. Vetusta Morla - La cuadratura del círculo.mp3",
+    "danceability": 37,
+    "happy": 37,
+    "sad": 63,
+    "relaxed": 57,
+    "aggressive": 23,
+    "engagement": 32,
+    "approachability": 65,
+    "energy": 33,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 161,
+    "keyNote": "B",
+    "scale": "Mayor",
+    "loudness_db": -20,
+    "spectralCentroid": 1739,
+    "spectralRolloff": 3426,
+    "spectralFlatness": 32,
+    "zeroCrossingRate": 12.59,
+    "lowFreqRatio": 16,
+    "midFreqRatio": 51,
+    "highFreqRatio": 32,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "La Cuadratura del Círculo",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d000048514abd2851d3681abb6a6d9ce9",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 80,
+    "moodSource": "Análisis heurístico",
+    "duration": 275.968,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

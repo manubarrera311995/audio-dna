@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "6. Vetusta Morla - El Hombre del Saco.mp3",
+    "danceability": 41,
+    "happy": 32,
+    "sad": 68,
+    "relaxed": 63,
+    "aggressive": 19,
+    "engagement": 23,
+    "approachability": 70,
+    "energy": 40,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 127,
+    "keyNote": "E",
+    "scale": "Menor",
+    "loudness_db": -18,
+    "spectralCentroid": 1345,
+    "spectralRolloff": 2772,
+    "spectralFlatness": 27,
+    "zeroCrossingRate": 8.39,
+    "lowFreqRatio": 31,
+    "midFreqRatio": 43,
+    "highFreqRatio": 26,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "El Hombre del Saco",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d00004851998588b51cf6bd91ba2d0269",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 502.328875,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

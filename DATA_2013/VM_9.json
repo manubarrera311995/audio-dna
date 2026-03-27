@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "9. Vestusta Morla - Sálvese quien pueda.mp3",
+    "danceability": 34,
+    "happy": 32,
+    "sad": 68,
+    "relaxed": 63,
+    "aggressive": 15,
+    "engagement": 23,
+    "approachability": 69,
+    "energy": 32,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 141,
+    "keyNote": "C#",
+    "scale": "Menor",
+    "loudness_db": -20,
+    "spectralCentroid": 1525,
+    "spectralRolloff": 2943,
+    "spectralFlatness": 28,
+    "zeroCrossingRate": 10.08,
+    "lowFreqRatio": 21,
+    "midFreqRatio": 56,
+    "highFreqRatio": 22,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Sálvese Quien Pueda",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d000048514abd2851d3681abb6a6d9ce9",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 60,
+    "moodSource": "Análisis heurístico",
+    "duration": 210.5585,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

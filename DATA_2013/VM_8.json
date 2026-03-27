@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "8. Vetusta Morla - Baldosas Amarillas.mp3",
+    "danceability": 29,
+    "happy": 29,
+    "sad": 71,
+    "relaxed": 55,
+    "aggressive": 29,
+    "engagement": 12,
+    "approachability": 59,
+    "energy": 11,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 200,
+    "keyNote": "E",
+    "scale": "Menor",
+    "loudness_db": -30,
+    "spectralCentroid": 2110,
+    "spectralRolloff": 3576,
+    "spectralFlatness": 37,
+    "zeroCrossingRate": 21.71,
+    "lowFreqRatio": 13,
+    "midFreqRatio": 46,
+    "highFreqRatio": 41,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Baldosas Amarillas",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d00004851998588b51cf6bd91ba2d0269",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 314.4098125,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

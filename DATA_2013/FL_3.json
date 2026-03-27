@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "3. Foals - Balloons.mp3",
+    "danceability": 35,
+    "happy": 22,
+    "sad": 78,
+    "relaxed": 61,
+    "aggressive": 19,
+    "engagement": 21,
+    "approachability": 79,
+    "energy": 35,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 149,
+    "keyNote": "A",
+    "scale": "Menor",
+    "loudness_db": -20,
+    "spectralCentroid": 1331,
+    "spectralRolloff": 2594,
+    "spectralFlatness": 19,
+    "zeroCrossingRate": 11.08,
+    "lowFreqRatio": 17,
+    "midFreqRatio": 54,
+    "highFreqRatio": 30,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Balloons",
+    "spotifyArtist": "Foals",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d0000485178e62a33f64526e737dab482",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 179.498625,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

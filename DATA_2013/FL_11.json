@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "11. Foals - Inhaler.mp3",
+    "danceability": 26,
+    "happy": 19,
+    "sad": 81,
+    "relaxed": 83,
+    "aggressive": 9,
+    "engagement": 20,
+    "approachability": 89,
+    "energy": 23,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 80,
+    "keyNote": "F",
+    "scale": "Menor",
+    "loudness_db": -23,
+    "spectralCentroid": 510,
+    "spectralRolloff": 1052,
+    "spectralFlatness": 10,
+    "zeroCrossingRate": 2.48,
+    "lowFreqRatio": 35,
+    "midFreqRatio": 42,
+    "highFreqRatio": 23,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Inhaler",
+    "spotifyArtist": "Foals",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d000048518b04dacf186124a62bc667a7",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 304.6109375,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "9. Foals - Red Socks Pugie.mp3",
+    "danceability": 42,
+    "happy": 35,
+    "sad": 65,
+    "relaxed": 51,
+    "aggressive": 34,
+    "engagement": 23,
+    "approachability": 45,
+    "energy": 30,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 192,
+    "keyNote": "E",
+    "scale": "Menor",
+    "loudness_db": -21,
+    "spectralCentroid": 2189,
+    "spectralRolloff": 4410,
+    "spectralFlatness": 53,
+    "zeroCrossingRate": 16.51,
+    "lowFreqRatio": 18,
+    "midFreqRatio": 37,
+    "highFreqRatio": 45,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Red Socks Pugie",
+    "spotifyArtist": "Foals",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d0000485178e62a33f64526e737dab482",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 318.6474375,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "filename": "7. Vetusta Morla - Mapas.mp3",
+    "danceability": 41,
+    "happy": 20,
+    "sad": 80,
+    "relaxed": 62,
+    "aggressive": 14,
+    "engagement": 24,
+    "approachability": 84,
+    "energy": 30,
+    "acousticness": null,
+    "instrumentalness": null,
+    "liveness": null,
+    "speechiness": null,
+    "tempo": 159,
+    "keyNote": "D",
+    "scale": "Menor",
+    "loudness_db": -21,
+    "spectralCentroid": 1242,
+    "spectralRolloff": 2374,
+    "spectralFlatness": 14,
+    "zeroCrossingRate": 12.37,
+    "lowFreqRatio": 24,
+    "midFreqRatio": 52,
+    "highFreqRatio": 23,
+    "genre": "Indie",
+    "subgenre": "",
+    "genreExplanation": "",
+    "genreConfidence": 0,
+    "spotifyTrackName": "Mapas",
+    "spotifyArtist": "Vetusta Morla",
+    "spotifyAlbumArt": "https://i.scdn.co/image/ab67616d00004851998588b51cf6bd91ba2d0269",
+    "spotifyGenres": [
+      "indie"
+    ],
+    "spotifyMatchConfidence": 100,
+    "moodSource": "Análisis heurístico",
+    "duration": 241.770625,
+    "sampleRate": 16000,
+    "channels": 2
+  }
+]
