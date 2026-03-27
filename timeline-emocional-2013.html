@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio DNA | Linea de tiempo emocional 2013</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#08111f;--panel:rgba(10,21,38,.84);--panel-strong:rgba(8,17,31,.96);--border:rgba(130,166,214,.18);--text:#f4efe4;--muted:#8fa7c7;--happy:#ff7a45;--happy-soft:#ffc56a;--sad:#53a7ff;--sad-soft:#8ee7ff;--accent:#f5efe5;--warning:#ffd166;--shadow:0 28px 60px rgba(0,0,0,.34)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:'Space Mono',monospace;color:var(--text);background:radial-gradient(circle at top left,rgba(255,122,69,.18),transparent 28%),radial-gradient(circle at top right,rgba(83,167,255,.18),transparent 32%),linear-gradient(180deg,#07111e 0%,#091728 46%,#050b14 100%);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(143,167,199,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(143,167,199,.07) 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(180deg,rgba(0,0,0,.75),transparent 88%);pointer-events:none;z-index:0}
+a{color:inherit}
+.page-shell{position:relative;z-index:1;max-width:1360px;margin:0 auto;padding:34px 22px 56px}
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:24px;margin-bottom:24px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+.hero-copy,.hero-meta,.chart-panel,.spotlight,.notes,.controls{padding:28px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:36px;height:1px;background:linear-gradient(90deg,transparent,rgba(245,239,229,.55))}
+h1,h2,h3,.stat-value,.logo-word{font-family:'Syne',sans-serif}
+.logo-word{display:block;font-size:clamp(2.8rem,7vw,5.4rem);line-height:.85;letter-spacing:-.06em;font-weight:800}
+.logo-word:first-of-type{color:var(--happy-soft)}.logo-word:last-of-type{color:var(--sad-soft)}
+.hero-copy h1{margin:18px 0 14px;font-size:clamp(1.8rem,3vw,3rem);line-height:1.05;max-width:12ch}
+.hero-copy p,.notes p,.notes li,.stat-meta,.chart-subtitle,.status-line,.spotlight-copy p{color:var(--muted);line-height:1.75;font-size:.88rem}
+.hero-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.ghost-link,.filter-btn,.act-chip{appearance:none;border:1px solid transparent;background:transparent;color:inherit;font:inherit;cursor:pointer;transition:transform .18s ease,border-color .18s ease,background .18s ease,color .18s ease}
+.ghost-link{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;text-decoration:none;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase}
+.ghost-link.primary{background:linear-gradient(135deg,rgba(255,122,69,.18),rgba(83,167,255,.16));border-color:rgba(245,239,229,.24)}
+.ghost-link.secondary{border-color:rgba(143,167,199,.25);color:var(--muted)}
+.ghost-link:hover,.filter-btn:hover,.act-chip:hover{transform:translateY(-1px)}
+.hero-meta{display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.meta-stack{display:grid;gap:14px}
+.status-pill,.meta-pill{border-radius:18px;padding:16px 18px;background:rgba(8,17,31,.65);border:1px solid rgba(143,167,199,.16)}
+.status-pill strong,.meta-pill strong{display:block;margin-bottom:6px;font-family:'Syne',sans-serif;font-size:1rem}
+.status-pill[data-tone="loading"] strong{color:var(--warning)}.status-pill[data-tone="ready"] strong{color:var(--sad-soft)}.status-pill[data-tone="warning"] strong{color:var(--happy-soft)}.status-pill[data-tone="error"] strong{color:#ff8f8f}
+.controls{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:center;margin-bottom:22px}
+.filter-group{display:flex;flex-wrap:wrap;gap:10px}
+.filter-btn{min-height:40px;padding:0 14px;border-radius:999px;border-color:rgba(143,167,199,.16);background:rgba(8,17,31,.6);color:var(--muted);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase}
+.filter-btn.is-active{border-color:rgba(245,239,229,.32);background:linear-gradient(135deg,rgba(255,122,69,.16),rgba(83,167,255,.18));color:var(--text)}
+.status-line{max-width:540px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}
+.stat-card{padding:20px;border-radius:22px;background:rgba(7,15,28,.78);border:1px solid rgba(143,167,199,.14);box-shadow:var(--shadow)}
+.stat-label{display:block;margin-bottom:10px;color:var(--muted);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase}
+.stat-value{display:block;font-size:clamp(1.6rem,2vw,2.5rem);letter-spacing:-.05em;line-height:.95;margin-bottom:8px}
+.stat-card[data-tone="happy"] .stat-value{color:var(--happy-soft)}.stat-card[data-tone="sad"] .stat-value{color:var(--sad-soft)}.stat-card[data-tone="neutral"] .stat-value{color:var(--accent)}.stat-card[data-tone="swing"] .stat-value{color:var(--warning)}
+.chart-panel{margin-bottom:22px}
+.chart-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}
+.chart-head h2{margin:10px 0 8px;font-size:clamp(1.4rem,2.2vw,2.15rem)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+.legend-item{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid rgba(143,167,199,.14);background:rgba(8,17,31,.55);color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em}
+.legend-swatch{width:10px;height:10px;border-radius:50%}
+.chart-frame{position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(143,167,199,.14);background:linear-gradient(180deg,rgba(255,122,69,.08),transparent 32%),linear-gradient(0deg,rgba(83,167,255,.08),transparent 32%),rgba(7,15,28,.9)}
+#timelineSvg{display:block;width:100%;height:560px;cursor:crosshair}
+.axis-footer{display:flex;justify-content:space-between;gap:12px;margin-top:14px;color:var(--muted);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.acts-strip{display:flex;gap:8px;margin-top:18px;overflow-x:auto;padding-bottom:4px}.acts-strip::-webkit-scrollbar{height:8px}.acts-strip::-webkit-scrollbar-thumb{background:rgba(143,167,199,.2);border-radius:999px}
+.act-chip{flex:1 0 auto;min-width:120px;padding:14px 14px 12px;border-radius:18px;border-color:rgba(143,167,199,.12);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));text-align:left}
+.act-chip.is-active{border-color:rgba(245,239,229,.3);box-shadow:inset 0 0 0 1px rgba(245,239,229,.08)}
+.act-name{display:block;font-family:'Syne',sans-serif;font-size:.94rem;line-height:1.05;margin-bottom:8px}
+.act-meta{display:block;color:var(--muted);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
+.detail-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:22px}
+.spotlight-shell{display:grid;grid-template-columns:132px minmax(0,1fr);gap:20px;align-items:start}
+.cover-box{position:relative;aspect-ratio:1;border-radius:20px;overflow:hidden;background:radial-gradient(circle at top left,rgba(255,122,69,.45),transparent 34%),radial-gradient(circle at bottom right,rgba(83,167,255,.45),transparent 34%),rgba(8,17,31,.95);border:1px solid rgba(143,167,199,.18)}
+.cover-box img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;font-family:'Syne',sans-serif;font-size:1.25rem;line-height:1.1;white-space:pre-line}
+.spotlight-copy h3{margin:10px 0 8px;font-size:clamp(1.3rem,2vw,2rem);line-height:1.02}
+.spotlight-copy .subline{color:var(--accent);font-size:.9rem;margin-bottom:12px}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.info-chip{padding:9px 12px;border-radius:999px;border:1px solid rgba(143,167,199,.14);background:rgba(8,17,31,.58);color:var(--muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.meter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:10px}
+.meter-card{padding:16px;border-radius:18px;background:rgba(8,17,31,.6);border:1px solid rgba(143,167,199,.12)}
+.meter-card strong{display:block;margin-bottom:12px;color:var(--accent);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}
+.meter-track{position:relative;height:8px;border-radius:999px;overflow:hidden;background:rgba(143,167,199,.16)}
+.meter-fill{height:100%;border-radius:999px}
+.meter-value{display:block;margin-top:10px;font-family:'Syne',sans-serif;font-size:1.5rem;letter-spacing:-.05em}
+.notes h3{margin:10px 0 16px;font-size:1.35rem}.notes ul{margin:0;padding-left:18px;color:var(--muted)}.notes code{color:var(--accent)}
+.footer-note{margin-top:26px;color:var(--muted);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;text-align:center}
+@media (max-width:1080px){.hero,.detail-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.page-shell{padding-inline:14px;padding-top:18px}.hero-copy,.hero-meta,.chart-panel,.spotlight,.notes,.controls{padding:20px;border-radius:18px}.stats-grid{grid-template-columns:1fr}.chart-head,.controls,.spotlight-shell{grid-template-columns:1fr;display:grid}.legend{justify-content:flex-start}#timelineSvg{height:460px}.axis-footer{flex-direction:column}.meter-grid{grid-template-columns:1fr}.spotlight-shell{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <section class="hero">
+    <div class="panel hero-copy">
+      <div class="eyebrow">Visualizacion 01</div>
+      <span class="logo-word">Audio</span>
+      <span class="logo-word">DNA</span>
+      <h1>Linea de tiempo emocional del festival 2013</h1>
+      <p>Esta vista cruza el orden cronologico de <code>FEP_2013.csv</code> con los metadatos emocionales de <code>DATA_2013</code>. La mitad superior muestra <strong>happy</strong>, la inferior <strong>sad</strong>, y el recorrido deja ver como cambia la valencia cancion por cancion.</p>
+      <div class="hero-links">
+        <a class="ghost-link primary" href="./index.html">Volver al analizador</a>
+        <a class="ghost-link secondary" href="#timeline-panel">Ir a la visualizacion</a>
+      </div>
+    </div>
+    <div class="panel hero-meta">
+      <div class="meta-stack">
+        <div class="status-pill" id="statusPill" data-tone="loading">
+          <strong>Cargando dataset</strong>
+          <div id="statusText">Leyendo orden cronologico y metadatos emocionales...</div>
+        </div>
+        <div class="meta-pill">
+          <strong>Como leerla</strong>
+          <div>Arriba gana <span style="color:var(--happy-soft)">happy</span>, abajo gana <span style="color:var(--sad-soft)">sad</span>. Pasa el cursor o toca el grafico para fijar una cancion.</div>
+        </div>
+      </div>
+      <div class="meta-pill">
+        <strong>Fuente</strong>
+        <div>Orden cronologico desde <code>FEP_2013.csv</code>. Valores emocionales desde cada <code>DATA_2013/&lt;id&gt;.json</code>.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel controls">
+    <div>
+      <div class="eyebrow">Filtro por fecha</div>
+      <div class="filter-group" id="dateFilters"></div>
+    </div>
+    <div class="status-line" id="loadStatus">Preparando la serie cronologica...</div>
+  </section>
+
+  <section class="stats-grid" id="statsGrid"></section>
+
+  <section class="panel chart-panel" id="timeline-panel">
+    <div class="chart-head">
+      <div>
+        <div class="eyebrow">Happy vs Sad</div>
+        <h2>Tension emocional a lo largo del festival</h2>
+        <div class="chart-subtitle">La serie sigue el orden del CSV. Cada punto representa una cancion con datos disponibles.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-swatch" style="background:var(--happy)"></span> Happy</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:var(--sad)"></span> Sad</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:var(--accent)"></span> Punto activo</div>
+      </div>
+    </div>
+    <div class="chart-frame">
+      <svg id="timelineSvg" viewBox="0 0 1200 560" preserveAspectRatio="none" aria-label="Linea de tiempo emocional 2013"></svg>
+    </div>
+    <div class="axis-footer">
+      <span>Inicio del recorrido</span>
+      <span>Orden cronologico segun FEP_2013.csv</span>
+      <span>Final del recorrido</span>
+    </div>
+    <div class="acts-strip" id="actsStrip"></div>
+  </section>
+
+  <section class="detail-grid">
+    <section class="panel spotlight">
+      <div class="eyebrow">Cancion activa</div>
+      <div class="spotlight-shell">
+        <div class="cover-box">
+          <img id="spotlightArt" alt="Portada de la cancion" hidden>
+          <div class="cover-fallback" id="spotlightFallback">Audio DNA</div>
+        </div>
+        <div class="spotlight-copy">
+          <h3 id="spotlightTitle">Esperando datos...</h3>
+          <div class="subline" id="spotlightArtist">Cargando canciones</div>
+          <p id="spotlightSummary">En cuanto termine la carga vas a poder explorar el recorrido emocional del festival.</p>
+          <div class="chip-row" id="spotlightChips"></div>
+          <div class="meter-grid">
+            <div class="meter-card">
+              <strong>Happy</strong>
+              <div class="meter-track"><div class="meter-fill" id="happyFill" style="background:linear-gradient(90deg,var(--happy),var(--happy-soft));width:0%"></div></div>
+              <span class="meter-value" id="happyValue">0</span>
+            </div>
+            <div class="meter-card">
+              <strong>Sad</strong>
+              <div class="meter-track"><div class="meter-fill" id="sadFill" style="background:linear-gradient(90deg,var(--sad),var(--sad-soft));width:0%"></div></div>
+              <span class="meter-value" id="sadValue">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="panel notes">
+      <div class="eyebrow">Lectura rapida</div>
+      <h3>Notas del recorrido</h3>
+      <div id="notesBody"><p>La lectura general aparecera aqui cuando la serie quede cargada.</p></div>
+    </section>
+  </section>
+
+  <div class="footer-note">Manuela Barrera Nieto · Universidad de los Andes · 2026</div>
+</div>
+
+<script>
+const state={allSongs:[],filteredSongs:[],activeDate:'all',activeSongId:null,chartGeometry:null,missingIds:[]};
+const els={statusPill:document.getElementById('statusPill'),statusText:document.getElementById('statusText'),loadStatus:document.getElementById('loadStatus'),dateFilters:document.getElementById('dateFilters'),statsGrid:document.getElementById('statsGrid'),timelineSvg:document.getElementById('timelineSvg'),actsStrip:document.getElementById('actsStrip'),spotlightArt:document.getElementById('spotlightArt'),spotlightFallback:document.getElementById('spotlightFallback'),spotlightTitle:document.getElementById('spotlightTitle'),spotlightArtist:document.getElementById('spotlightArtist'),spotlightSummary:document.getElementById('spotlightSummary'),spotlightChips:document.getElementById('spotlightChips'),happyFill:document.getElementById('happyFill'),sadFill:document.getElementById('sadFill'),happyValue:document.getElementById('happyValue'),sadValue:document.getElementById('sadValue'),notesBody:document.getElementById('notesBody')};
+const MONTHS=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+init();
+
+async function init(){
+  try{
+    const festivalRows=await loadFestivalRows();
+    renderDateFilters(festivalRows);
+    const {songs,missingIds}=await loadSongMetadata(festivalRows);
+    state.allSongs=songs.sort((a,b)=>a.order-b.order);
+    state.missingIds=missingIds;
+    if(!state.allSongs.length) throw new Error('No encontre canciones con metadatos validos');
+    setStatus(missingIds.length?`Serie lista con ${state.allSongs.length} canciones y ${missingIds.length} faltantes.`:`Serie lista con ${state.allSongs.length} canciones.` ,missingIds.length?'warning':'ready');
+    applyFilters();
+  }catch(error){
+    const hint=window.location.protocol==='file:'?' Usa un servidor local para que fetch pueda leer el CSV y los JSON.':'';
+    setStatus(`${error.message}.${hint}`,'error');
+    els.loadStatus.textContent=`${error.message}.${hint}`;
+    renderEmptyState();
+  }
+}
+
+async function loadFestivalRows(){
+  setStatus('Leyendo FEP_2013.csv...','loading');
+  const response=await fetch('./FEP_2013.csv');
+  if(!response.ok) throw new Error('No pude leer FEP_2013.csv');
+  const csvBuffer=await response.arrayBuffer();
+  const csvText=new TextDecoder('windows-1252').decode(csvBuffer);
+  const rows=parseCSV(csvText);
+  return rows.slice(1).map((cells,order)=>({
+    id:cleanText(cells[0]),
+    artist:cleanText(cells[1]),
+    song:cleanText(cells[2]),
+    date:cleanText(cells[3]),
+    startTime:cleanText(cells[4]),
+    endTime:cleanText(cells[5]),
+    stage:cleanText(cells[6]),
+    country:cleanText(cells[7]),
+    city:cleanText(cells[8]),
+    language:cleanText(cells[9]),
+    order
+  })).filter((row)=>row.id);
+}
+
+async function loadSongMetadata(rows){
+  const songs=[]; const missingIds=[]; const concurrency=Math.min(18,rows.length);
+  let cursor=0; let done=0;
+  const workers=Array.from({length:concurrency},async()=>{
+    while(cursor<rows.length){
+      const current=rows[cursor++];
+      try{
+        const response=await fetch(`./DATA_2013/${encodeURIComponent(current.id)}.json`);
+        if(!response.ok){
+          missingIds.push(current.id);
+        }else{
+          const payload=await response.json();
+          const meta=Array.isArray(payload)?payload[0]:payload;
+          if(meta) songs.push(mergeSongData(current,meta));
+          else missingIds.push(current.id);
+        }
+      }catch(error){
+        missingIds.push(current.id);
+      }
+      done+=1;
+      const loaded=Math.max(0,done-missingIds.length);
+      els.loadStatus.textContent=`Cargando metadatos: ${done}/${rows.length}. Disponibles ${loaded}.`;
+    }
+  });
+  await Promise.all(workers);
+  return {songs,missingIds};
+}
+
+function mergeSongData(base,meta){
+  const happy=clamp(meta.happy);
+  const sad=clamp(meta.sad);
+  return {
+    ...base,
+    title:base.song||cleanTrackName(meta.spotifyTrackName)||cleanTrackName(meta.filename)||base.id,
+    artist:base.artist||cleanText(meta.spotifyArtist)||'Sin artista',
+    happy,
+    sad,
+    balance:happy-sad,
+    albumArt:cleanText(meta.spotifyAlbumArt),
+    genre:cleanText(meta.genre||meta.subgenre),
+    tempo:toFiniteNumber(meta.tempo),
+    duration:Number.isFinite(Number(meta.duration))?Number(meta.duration):null,
+    moodSource:cleanText(meta.moodSource),
+    prettyDate:formatDateLabel(base.date),
+    timestamp:parseDateTime(base.date,base.startTime)
+  };
+}
+
+function renderDateFilters(rows){
+  const uniqueDates=['all',...new Set(rows.map((row)=>row.date).filter(Boolean))];
+  els.dateFilters.innerHTML=uniqueDates.map((dateValue)=>{
+    const label=dateValue==='all'?'Todo el festival':formatDateLabel(dateValue);
+    const activeClass=dateValue===state.activeDate?' is-active':'';
+    return `<button class="filter-btn${activeClass}" data-date="${escapeHtml(dateValue)}">${escapeHtml(label)}</button>`;
+  }).join('');
+  Array.from(els.dateFilters.querySelectorAll('[data-date]')).forEach((button)=>{
+    button.addEventListener('click',()=>{
+      state.activeDate=button.dataset.date;
+      renderDateFilters(state.allSongs.length?state.allSongs:rows);
+      applyFilters();
+    });
+  });
+}
+
+function applyFilters(){
+  state.filteredSongs=state.activeDate==='all'?[...state.allSongs]:state.allSongs.filter((song)=>song.date===state.activeDate);
+  if(!state.filteredSongs.length){
+    renderEmptyState();
+    return;
+  }
+  if(!state.filteredSongs.some((song)=>song.id===state.activeSongId)){
+    state.activeSongId=state.filteredSongs[Math.floor(state.filteredSongs.length/3)]?.id||state.filteredSongs[0].id;
+  }
+  renderStats(state.filteredSongs);
+  renderChart(state.filteredSongs);
+  renderActsStrip(state.filteredSongs);
+  updateSpotlight(getActiveSong());
+  renderNotes(state.filteredSongs);
+  els.loadStatus.textContent=buildLoadSummary(state.filteredSongs);
+}
+
+function renderStats(songs){
+  const happiest=songs.reduce((best,song)=>song.happy>best.happy?song:best,songs[0]);
+  const saddest=songs.reduce((best,song)=>song.sad>best.sad?song:best,songs[0]);
+  const biggestSwing=getBiggestSwing(songs);
+  const cards=[
+    {tone:'neutral',label:'Canciones visibles',value:`${songs.length}`,meta:state.activeDate==='all'?'Recorrido completo':`Filtro ${formatDateLabel(state.activeDate)}`},
+    {tone:'happy',label:'Pico happy',value:`${Math.round(happiest.happy)}`,meta:`${happiest.artist} · ${happiest.title}`},
+    {tone:'sad',label:'Pico sad',value:`${Math.round(saddest.sad)}`,meta:`${saddest.artist} · ${saddest.title}`},
+    {tone:'swing',label:'Mayor giro',value:`${Math.round(biggestSwing.delta)}`,meta:biggestSwing.label}
+  ];
+  els.statsGrid.innerHTML=cards.map((card)=>`
+    <article class="stat-card" data-tone="${card.tone}">
+      <span class="stat-label">${escapeHtml(card.label)}</span>
+      <span class="stat-value">${escapeHtml(card.value)}</span>
+      <div class="stat-meta">${escapeHtml(card.meta)}</div>
+    </article>
+  `).join('');
+}
+
+function renderChart(songs){
+  const width=1200, height=560;
+  const pad={top:54,right:34,bottom:86,left:74};
+  const plotWidth=width-pad.left-pad.right;
+  const plotHeight=height-pad.top-pad.bottom;
+  const centerY=pad.top+(plotHeight/2);
+  const halfBand=(plotHeight/2)-22;
+  const divisor=Math.max(songs.length-1,1);
+  const xAt=(index)=>pad.left+(plotWidth*index/divisor);
+  const yHappy=(value)=>centerY-(clamp(value)/100)*halfBand;
+  const ySad=(value)=>centerY+(clamp(value)/100)*halfBand;
+  const happyPoints=songs.map((song,index)=>({x:xAt(index),y:yHappy(song.happy)}));
+  const sadPoints=songs.map((song,index)=>({x:xAt(index),y:ySad(song.sad)}));
+  const activeSong=getActiveSong();
+  state.chartGeometry={width,height,pad,plotWidth,plotHeight,centerY,halfBand,xAt,yHappy,ySad};
+  const gridLines=[100,50,0,50,100].map((value,index)=>{
+    const y=index<2?yHappy(value):index===2?centerY:ySad(value);
+    const label=index===2?'0':`${value}`;
+    return `<line x1="${pad.left}" y1="${y}" x2="${width-pad.right}" y2="${y}" stroke="rgba(143,167,199,0.16)" stroke-dasharray="${index===2?'0':'5 8'}" /><text x="${pad.left-18}" y="${y+4}" fill="rgba(143,167,199,0.72)" font-size="11" text-anchor="end">${label}</text>`;
+  }).join('');
+  const dateMarkers=buildDateMarkers(songs,xAt,pad,height);
+  const activeMarker=activeSong?buildActiveMarker(songs,activeSong,xAt,yHappy,ySad,centerY,pad,height):'';
+  els.timelineSvg.innerHTML=`
+    <defs>
+      <linearGradient id="happyAreaGradient" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="rgba(255,197,106,0.75)"></stop>
+        <stop offset="100%" stop-color="rgba(255,122,69,0.03)"></stop>
+      </linearGradient>
+      <linearGradient id="sadAreaGradient" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="rgba(83,167,255,0.03)"></stop>
+        <stop offset="100%" stop-color="rgba(142,231,255,0.75)"></stop>
+      </linearGradient>
+      <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="7" result="blur"></feGaussianBlur>
+        <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+      </filter>
+    </defs>
+    <rect x="0" y="0" width="${width}" height="${height}" fill="transparent"></rect>
+    ${gridLines}
+    ${dateMarkers}
+    <path d="${buildAreaPath(happyPoints,centerY)}" fill="url(#happyAreaGradient)"></path>
+    <path d="${buildAreaPath(sadPoints,centerY)}" fill="url(#sadAreaGradient)"></path>
+    <path d="${buildLinePath(happyPoints)}" fill="none" stroke="var(--happy)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+    <path d="${buildLinePath(sadPoints)}" fill="none" stroke="var(--sad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+    <line x1="${pad.left}" y1="${centerY}" x2="${width-pad.right}" y2="${centerY}" stroke="rgba(244,239,228,0.36)" stroke-width="1.1"></line>
+    <text x="${pad.left}" y="${pad.top-18}" fill="rgba(255,197,106,0.92)" font-size="13" letter-spacing="2">HAPPY</text>
+    <text x="${pad.left}" y="${height-pad.bottom+32}" fill="rgba(142,231,255,0.92)" font-size="13" letter-spacing="2">SAD</text>
+    <text x="${width-pad.right}" y="${centerY-12}" fill="rgba(244,239,228,0.72)" font-size="11" text-anchor="end">equilibrio</text>
+    ${activeMarker}
+  `;
+  bindChartInteractions(songs);
+}
+
+function renderActsStrip(songs){
+  const acts=[]; let currentGroup=null;
+  songs.forEach((song)=>{
+    if(!currentGroup||currentGroup.artist!==song.artist){
+      currentGroup={artist:song.artist,startId:song.id,date:song.date,stage:song.stage,count:0,balanceSum:0};
+      acts.push(currentGroup);
+    }
+    currentGroup.count+=1;
+    currentGroup.balanceSum+=song.balance;
+  });
+  els.actsStrip.innerHTML=acts.map((act)=>{
+    const averageBalance=act.balanceSum/Math.max(act.count,1);
+    const colors=toneForBalance(averageBalance);
+    const isActive=songs.some((song)=>song.artist===act.artist&&song.id===state.activeSongId);
+    return `<button class="act-chip${isActive?' is-active':''}" data-act-id="${escapeHtml(act.startId)}" style="flex-grow:${act.count};border-color:${colors.border};background:${colors.background};"><span class="act-name">${escapeHtml(act.artist)}</span><span class="act-meta">${escapeHtml(formatDateLabel(act.date))} · ${escapeHtml(act.stage||'Escenario')} · ${act.count} canciones</span></button>`;
+  }).join('');
+  Array.from(els.actsStrip.querySelectorAll('[data-act-id]')).forEach((button)=>{
+    button.addEventListener('click',()=>{
+      state.activeSongId=button.dataset.actId;
+      renderChart(state.filteredSongs);
+      renderActsStrip(state.filteredSongs);
+      updateSpotlight(getActiveSong());
+    });
+  });
+}
+
+function renderNotes(songs){
+  const avgHappy=averageOf(songs,'happy');
+  const avgSad=averageOf(songs,'sad');
+  const avgBalance=averageOf(songs,'balance');
+  const dominantMood=avgBalance>=0?'happy':'sad';
+  const biggestSwing=getBiggestSwing(songs);
+  const missingText=state.missingIds.length?`<li>Faltan <code>${state.missingIds.length}</code> JSON: ${escapeHtml(state.missingIds.join(', '))}.</li>`:'<li>No hay huecos de metadata en este corte.</li>';
+  els.notesBody.innerHTML=`
+    <p>En este tramo el promedio se inclina hacia <strong>${dominantMood}</strong>: happy ${Math.round(avgHappy)} vs sad ${Math.round(avgSad)}.</p>
+    <ul>
+      <li>Balance promedio del recorrido: <code>${avgBalance>=0?'+':''}${Math.round(avgBalance)}</code>.</li>
+      <li>El giro mas brusco ocurre entre <code>${escapeHtml(biggestSwing.from)}</code> y <code>${escapeHtml(biggestSwing.to)}</code>.</li>
+      <li>El grafico sigue el orden del CSV, no un orden alfabetico ni por artista.</li>
+      ${missingText}
+    </ul>
+  `;
+}
+
+function renderEmptyState(){
+  els.statsGrid.innerHTML='';
+  els.actsStrip.innerHTML='';
+  els.notesBody.innerHTML='<p>No hay suficiente informacion para construir la serie.</p>';
+  els.timelineSvg.innerHTML=`<rect x="0" y="0" width="1200" height="560" fill="rgba(7,15,28,0.9)"></rect><text x="600" y="280" text-anchor="middle" fill="rgba(143,167,199,0.85)" font-size="20" font-family="Space Mono">No se pudo dibujar la visualizacion.</text>`;
+}
+
+function updateSpotlight(song){
+  if(!song) return;
+  els.spotlightTitle.textContent=song.title;
+  els.spotlightArtist.textContent=`${song.artist} · ${song.prettyDate}${song.startTime?` · ${song.startTime}`:''}`;
+  const balanceLabel=song.balance>=0?`+${Math.round(song.balance)}`:`${Math.round(song.balance)}`;
+  els.spotlightSummary.textContent=`Balance emocional ${balanceLabel}. ${song.happy>=song.sad?'La cancion empuja hacia happy.':'La cancion empuja hacia sad.'}`;
+  els.spotlightChips.innerHTML=[song.stage||'Escenario sin dato',song.genre||'Genero sin dato',song.tempo?`${Math.round(song.tempo)} BPM`:'BPM sin dato',song.moodSource||'Mood source'].map((item)=>`<span class="info-chip">${escapeHtml(item)}</span>`).join('');
+  els.happyFill.style.width=`${song.happy}%`;
+  els.sadFill.style.width=`${song.sad}%`;
+  els.happyValue.textContent=`${Math.round(song.happy)}`;
+  els.sadValue.textContent=`${Math.round(song.sad)}`;
+  if(song.albumArt){
+    els.spotlightArt.src=song.albumArt;
+    els.spotlightArt.hidden=false;
+    els.spotlightFallback.hidden=true;
+  }else{
+    els.spotlightArt.hidden=true;
+    els.spotlightFallback.hidden=false;
+    els.spotlightFallback.textContent=`${song.artist}\n${song.title}`;
+  }
+}
+
+function bindChartInteractions(songs){
+  const svg=els.timelineSvg;
+  svg.onpointermove=(event)=>{
+    const song=getSongFromPointer(event,songs);
+    if(!song||song.id===state.activeSongId) return;
+    state.activeSongId=song.id;
+    renderChart(state.filteredSongs);
+    renderActsStrip(state.filteredSongs);
+    updateSpotlight(song);
+  };
+  svg.onclick=(event)=>{
+    const song=getSongFromPointer(event,songs);
+    if(!song) return;
+    state.activeSongId=song.id;
+    renderChart(state.filteredSongs);
+    renderActsStrip(state.filteredSongs);
+    updateSpotlight(song);
+  };
+}
+
+function getSongFromPointer(event,songs){
+  if(!state.chartGeometry||!songs.length) return null;
+  const rect=els.timelineSvg.getBoundingClientRect();
+  const relativeX=((event.clientX-rect.left)/rect.width)*state.chartGeometry.width;
+  const clampedX=Math.max(state.chartGeometry.pad.left,Math.min(state.chartGeometry.width-state.chartGeometry.pad.right,relativeX));
+  const ratio=(clampedX-state.chartGeometry.pad.left)/state.chartGeometry.plotWidth;
+  const index=Math.round(ratio*Math.max(songs.length-1,0));
+  return songs[index]||null;
+}
+
+function buildDateMarkers(songs,xAt,pad,height){
+  const markers=[]; const seen=new Set();
+  songs.forEach((song,index)=>{
+    if(!song.date||seen.has(song.date)) return;
+    seen.add(song.date);
+    const x=xAt(index);
+    markers.push(`<line x1="${x}" y1="${pad.top-6}" x2="${x}" y2="${height-pad.bottom+10}" stroke="rgba(244,239,228,0.14)" stroke-dasharray="3 10"></line><text x="${x+8}" y="${pad.top-16}" fill="rgba(244,239,228,0.68)" font-size="11">${escapeHtml(formatDateLabel(song.date))}</text>`);
+  });
+  return markers.join('');
+}
+
+function buildActiveMarker(songs,activeSong,xAt,yHappy,ySad,centerY,pad,height){
+  const index=songs.findIndex((song)=>song.id===activeSong.id);
+  if(index===-1) return '';
+  const x=xAt(index);
+  const happyY=yHappy(activeSong.happy);
+  const sadY=ySad(activeSong.sad);
+  const labelX=Math.min(Math.max(x+14,pad.left+12),1030);
+  const labelY=Math.max(happyY-36,pad.top-8);
+  return `<line x1="${x}" y1="${pad.top-4}" x2="${x}" y2="${height-pad.bottom+8}" stroke="rgba(244,239,228,0.28)" stroke-width="1.2"></line><line x1="${x}" y1="${happyY}" x2="${x}" y2="${sadY}" stroke="rgba(244,239,228,0.22)" stroke-width="2"></line><circle cx="${x}" cy="${happyY}" r="7" fill="var(--happy-soft)" filter="url(#softGlow)"></circle><circle cx="${x}" cy="${sadY}" r="7" fill="var(--sad-soft)" filter="url(#softGlow)"></circle><circle cx="${x}" cy="${centerY}" r="4.5" fill="var(--accent)"></circle><rect x="${labelX}" y="${labelY}" rx="14" ry="14" width="170" height="48" fill="rgba(8,17,31,0.88)" stroke="rgba(244,239,228,0.14)"></rect><text x="${labelX+14}" y="${labelY+20}" fill="rgba(244,239,228,0.95)" font-size="13">${escapeHtml(trimTo(activeSong.artist,21))}</text><text x="${labelX+14}" y="${labelY+36}" fill="rgba(143,167,199,0.9)" font-size="11">${escapeHtml(trimTo(activeSong.title,24))}</text>`;
+}
+
+function buildLinePath(points){
+  if(!points.length) return '';
+  return `M ${points.map((point)=>`${point.x} ${point.y}`).join(' L ')}`;
+}
+
+function buildAreaPath(points,baseY){
+  if(!points.length) return '';
+  return `M ${points[0].x} ${baseY} L ${points.map((point)=>`${point.x} ${point.y}`).join(' L ')} L ${points[points.length-1].x} ${baseY} Z`;
+}
+
+function getBiggestSwing(songs){
+  if(songs.length<2) return {delta:0,from:songs[0]?.title||'N/A',to:songs[0]?.title||'N/A',label:songs[0]?.title||'N/A'};
+  let winner={delta:0,from:songs[0].title,to:songs[1].title,label:`${songs[0].artist} -> ${songs[1].artist}`};
+  for(let index=1;index<songs.length;index+=1){
+    const previous=songs[index-1];
+    const current=songs[index];
+    const delta=Math.abs(current.balance-previous.balance);
+    if(delta>winner.delta){
+      winner={delta,from:`${previous.artist} - ${previous.title}`,to:`${current.artist} - ${current.title}`,label:`${previous.artist} -> ${current.artist}`};
+    }
+  }
+  return winner;
+}
+
+function buildLoadSummary(songs){
+  const uniqueActs=new Set(songs.map((song)=>song.artist)).size;
+  return `${songs.length} canciones visibles · ${uniqueActs} actos · ${state.activeDate==='all'?'festival completo':formatDateLabel(state.activeDate)}`;
+}
+
+function getActiveSong(){
+  return state.filteredSongs.find((song)=>song.id===state.activeSongId)||state.filteredSongs[0]||null;
+}
+
+function setStatus(message,tone){
+  els.statusPill.dataset.tone=tone;
+  els.statusText.textContent=message;
+}
+
+function averageOf(items,key){
+  if(!items.length) return 0;
+  return items.reduce((sum,item)=>sum+Number(item[key]||0),0)/items.length;
+}
+
+function toneForBalance(balance){
+  const ratio=(Math.max(-100,Math.min(100,balance))+100)/200;
+  const start={r:83,g:167,b:255};
+  const end={r:255,g:122,b:69};
+  const red=Math.round(start.r+(end.r-start.r)*ratio);
+  const green=Math.round(start.g+(end.g-start.g)*ratio);
+  const blue=Math.round(start.b+(end.b-start.b)*ratio);
+  return {border:`rgba(${red},${green},${blue},0.4)`,background:`linear-gradient(135deg,rgba(${red},${green},${blue},0.18),rgba(8,17,31,0.56))`};
+}
+
+function parseCSV(text){
+  const rows=[]; let row=[]; let value=''; let inQuotes=false;
+  for(let index=0;index<text.length;index+=1){
+    const char=text[index];
+    const next=text[index+1];
+    if(char==='"'){
+      if(inQuotes&&next==='"'){
+        value+='"';
+        index+=1;
+      }else{
+        inQuotes=!inQuotes;
+      }
+    }else if(char===','&&!inQuotes){
+      row.push(value);
+      value='';
+    }else if((char==='\n'||char==='\r')&&!inQuotes){
+      if(char==='\r'&&next==='\n') index+=1;
+      row.push(value);
+      if(row.some((cell)=>cell.trim()!=='')) rows.push(row);
+      row=[]; value='';
+    }else{
+      value+=char;
+    }
+  }
+  if(value.length||row.length){
+    row.push(value);
+    if(row.some((cell)=>cell.trim()!=='')) rows.push(row);
+  }
+  return rows;
+}
+
+function parseDateTime(dateText,timeText){
+  const dateParts=dateText.split('-').map((part)=>Number(part));
+  const timeParts=timeText.split(':').map((part)=>Number(part));
+  if(dateParts.length!==3||timeParts.length<2||dateParts.some(Number.isNaN)||timeParts.some(Number.isNaN)) return null;
+  const [day,month,year]=dateParts;
+  const [hours,minutes]=timeParts;
+  return new Date(year,month-1,day,hours,minutes).getTime();
+}
+
+function formatDateLabel(dateText){
+  const parts=dateText.split('-').map((part)=>Number(part));
+  if(parts.length!==3||parts.some(Number.isNaN)) return dateText;
+  return `${String(parts[0]).padStart(2,'0')} ${MONTHS[(parts[1]||1)-1]||''}`.trim();
+}
+
+function cleanTrackName(value){
+  return cleanText(value).replace(/\.(mp3|wav|flac)$/i,'').replace(/^\d+\.\s*/,'');
+}
+
+function cleanText(value){
+  return String(value||'').replace(/\uFEFF/g,'').replace(/\s+/g,' ').replace(/^"|"$/g,'').trim();
+}
+
+function clamp(value){
+  const number=Number(value);
+  if(!Number.isFinite(number)) return 0;
+  return Math.max(0,Math.min(100,number));
+}
+
+function toFiniteNumber(value){
+  const number=Number(value);
+  return Number.isFinite(number)?number:null;
+}
+
+function trimTo(text,maxLength){
+  const safe=String(text||'');
+  return safe.length>maxLength?`${safe.slice(0,maxLength-1)}...`:safe;
+}
+
+function escapeHtml(value){
+  return String(value||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+</script>
+</body>
+</html>
